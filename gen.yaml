@@ -1,0 +1,13 @@
+configVersion: 1.0.0
+generation:
+  comments:
+    disableComments: false
+    omitDescriptionIfSummaryPresent: false
+  baseServerURL: ""
+  sdkClassName: netbird
+  singleTagPerOp: false
+  tagNamespacingDisabled: false
+terraform:
+  version: 0.0.1
+  author: NetBird
+  packageName: netbird
