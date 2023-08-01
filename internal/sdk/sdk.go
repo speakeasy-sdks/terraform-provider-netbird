@@ -138,8 +138,8 @@ func New(opts ...SDKOption) *Netbird {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "terraform",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "1.5.0",
-			GenVersion:        "2.75.1",
+			SDKVersion:        "1.5.1",
+			GenVersion:        "2.75.2",
 		},
 	}
 	for _, opt := range opts {
