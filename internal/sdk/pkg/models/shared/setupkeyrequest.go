@@ -4,7 +4,7 @@ package shared
 
 // SetupKeyRequest - New Setup Key request
 type SetupKeyRequest struct {
-	// Setup key groups to auto-assign to peers registered with this key
+	// List of group IDs to auto-assign to peers registered with this key
 	AutoGroups []string `json:"auto_groups"`
 	// Expiration time in seconds
 	ExpiresIn int64 `json:"expires_in"`
