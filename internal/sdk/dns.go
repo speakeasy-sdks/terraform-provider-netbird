@@ -123,7 +123,7 @@ func (s *dns) GetAPIDNSNameservers(ctx context.Context, security operations.GetA
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.NameserverGroup
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.NameserverGroups = out
@@ -186,7 +186,7 @@ func (s *dns) GetAPIDNSNameserversNsgroupID(ctx context.Context, request operati
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.NameserverGroup
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.NameserverGroup = out
@@ -246,7 +246,7 @@ func (s *dns) GetAPIDNSSettings(ctx context.Context, security operations.GetAPID
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.DNSSettings
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.DNSSettings = out
@@ -274,7 +274,10 @@ func (s *dns) PostAPIDNSNameservers(ctx context.Context, request shared.Nameserv
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -297,6 +300,7 @@ func (s *dns) PostAPIDNSNameservers(ctx context.Context, request shared.Nameserv
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -313,7 +317,7 @@ func (s *dns) PostAPIDNSNameservers(ctx context.Context, request shared.Nameserv
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.NameserverGroup
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.NameserverGroup = out
@@ -344,7 +348,10 @@ func (s *dns) PutAPIDNSNameserversNsgroupID(ctx context.Context, request operati
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -367,6 +374,7 @@ func (s *dns) PutAPIDNSNameserversNsgroupID(ctx context.Context, request operati
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -383,7 +391,7 @@ func (s *dns) PutAPIDNSNameserversNsgroupID(ctx context.Context, request operati
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.NameserverGroup
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.NameserverGroup = out
@@ -411,7 +419,10 @@ func (s *dns) PutAPIDNSSettings(ctx context.Context, request shared.DNSSettings,
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -434,6 +445,7 @@ func (s *dns) PutAPIDNSSettings(ctx context.Context, request shared.DNSSettings,
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -450,7 +462,7 @@ func (s *dns) PutAPIDNSSettings(ctx context.Context, request shared.DNSSettings,
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.DNSSettings
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.DNSSettings = out

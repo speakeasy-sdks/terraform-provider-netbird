@@ -127,7 +127,7 @@ func (s *users) GetAPIUsers(ctx context.Context, request operations.GetAPIUsersR
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.User
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Users = out
@@ -155,7 +155,10 @@ func (s *users) PostAPIUsers(ctx context.Context, request shared.UserCreateReque
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -178,6 +181,7 @@ func (s *users) PostAPIUsers(ctx context.Context, request shared.UserCreateReque
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -194,7 +198,7 @@ func (s *users) PostAPIUsers(ctx context.Context, request shared.UserCreateReque
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.User
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.User = out
@@ -280,7 +284,10 @@ func (s *users) PutAPIUsersUserID(ctx context.Context, request operations.PutAPI
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -303,6 +310,7 @@ func (s *users) PutAPIUsersUserID(ctx context.Context, request operations.PutAPI
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -319,7 +327,7 @@ func (s *users) PutAPIUsersUserID(ctx context.Context, request operations.PutAPI
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.User
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.User = out

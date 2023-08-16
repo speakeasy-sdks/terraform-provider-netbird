@@ -68,7 +68,7 @@ func (s *events) GetAPIEvents(ctx context.Context, security operations.GetAPIEve
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.Event
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Events = out

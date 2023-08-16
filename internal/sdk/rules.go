@@ -123,7 +123,7 @@ func (s *rules) GetAPIRules(ctx context.Context, security operations.GetAPIRules
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.Rule
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Rules = out
@@ -186,7 +186,7 @@ func (s *rules) GetAPIRulesRuleID(ctx context.Context, request operations.GetAPI
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Rule
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Rule = out
@@ -214,7 +214,10 @@ func (s *rules) PostAPIRules(ctx context.Context, request shared.RuleRequest, se
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -237,6 +240,7 @@ func (s *rules) PostAPIRules(ctx context.Context, request shared.RuleRequest, se
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -253,7 +257,7 @@ func (s *rules) PostAPIRules(ctx context.Context, request shared.RuleRequest, se
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Rule
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Rule = out
@@ -277,7 +281,10 @@ func (s *rules) PutAPIRulesRuleID(ctx context.Context, request operations.PutAPI
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -300,6 +307,7 @@ func (s *rules) PutAPIRulesRuleID(ctx context.Context, request operations.PutAPI
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -316,7 +324,7 @@ func (s *rules) PutAPIRulesRuleID(ctx context.Context, request operations.PutAPI
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Rule
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Rule = out

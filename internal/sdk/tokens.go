@@ -125,7 +125,7 @@ func (s *tokens) GetAPIUsersUserIDTokens(ctx context.Context, request operations
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.PersonalAccessToken
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.PersonalAccessTokens = out
@@ -188,7 +188,7 @@ func (s *tokens) GetAPIUsersUserIDTokensTokenID(ctx context.Context, request ope
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.PersonalAccessToken
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.PersonalAccessToken = out
@@ -219,7 +219,10 @@ func (s *tokens) PostAPIUsersUserIDTokens(ctx context.Context, request operation
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -242,6 +245,7 @@ func (s *tokens) PostAPIUsersUserIDTokens(ctx context.Context, request operation
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -258,7 +262,7 @@ func (s *tokens) PostAPIUsersUserIDTokens(ctx context.Context, request operation
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.PersonalAccessTokenGenerated
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.PersonalAccessTokenGenerated = out

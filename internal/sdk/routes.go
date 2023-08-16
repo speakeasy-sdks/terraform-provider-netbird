@@ -123,7 +123,7 @@ func (s *routes) GetAPIRoutes(ctx context.Context, security operations.GetAPIRou
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.Route
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Routes = out
@@ -186,7 +186,7 @@ func (s *routes) GetAPIRoutesRouteID(ctx context.Context, request operations.Get
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Route
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Route = out
@@ -214,7 +214,10 @@ func (s *routes) PostAPIRoutes(ctx context.Context, request shared.RouteRequest,
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -237,6 +240,7 @@ func (s *routes) PostAPIRoutes(ctx context.Context, request shared.RouteRequest,
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -253,7 +257,7 @@ func (s *routes) PostAPIRoutes(ctx context.Context, request shared.RouteRequest,
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Route
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Route = out
@@ -284,7 +288,10 @@ func (s *routes) PutAPIRoutesRouteID(ctx context.Context, request operations.Put
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -307,6 +314,7 @@ func (s *routes) PutAPIRoutesRouteID(ctx context.Context, request operations.Put
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -323,7 +331,7 @@ func (s *routes) PutAPIRoutesRouteID(ctx context.Context, request operations.Put
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Route
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Route = out

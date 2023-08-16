@@ -123,7 +123,7 @@ func (s *groups) GetAPIGroups(ctx context.Context, security operations.GetAPIGro
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.Group
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Groups = out
@@ -186,7 +186,7 @@ func (s *groups) GetAPIGroupsGroupID(ctx context.Context, request operations.Get
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Group
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Group = out
@@ -214,7 +214,10 @@ func (s *groups) PostAPIGroups(ctx context.Context, request shared.GroupRequest,
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "POST", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -237,6 +240,7 @@ func (s *groups) PostAPIGroups(ctx context.Context, request shared.GroupRequest,
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -253,7 +257,7 @@ func (s *groups) PostAPIGroups(ctx context.Context, request shared.GroupRequest,
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Group
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Group = out
@@ -284,7 +288,10 @@ func (s *groups) PutAPIGroupsGroupID(ctx context.Context, request operations.Put
 		return nil, fmt.Errorf("error serializing request body: %w", err)
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "PUT", url, bodyReader)
+	debugBody := bytes.NewBuffer([]byte{})
+	debugReader := io.TeeReader(bodyReader, debugBody)
+
+	req, err := http.NewRequestWithContext(ctx, "PUT", url, debugReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
@@ -307,6 +314,7 @@ func (s *groups) PutAPIGroupsGroupID(ctx context.Context, request operations.Put
 	if err != nil {
 		return nil, fmt.Errorf("error reading response body: %w", err)
 	}
+	httpRes.Request.Body = io.NopCloser(debugBody)
 	httpRes.Body.Close()
 	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
 
@@ -323,7 +331,7 @@ func (s *groups) PutAPIGroupsGroupID(ctx context.Context, request operations.Put
 		case utils.MatchContentType(contentType, `application/json`):
 			var out *shared.Group
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return nil, err
+				return res, err
 			}
 
 			res.Group = out
