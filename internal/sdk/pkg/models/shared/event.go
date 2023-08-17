@@ -21,6 +21,7 @@ const (
 	EventActivityCodeUserRoleUpdate                           EventActivityCode = "user.role.update"
 	EventActivityCodeUserBlock                                EventActivityCode = "user.block"
 	EventActivityCodeUserUnblock                              EventActivityCode = "user.unblock"
+	EventActivityCodeUserPeerLogin                            EventActivityCode = "user.peer.login"
 	EventActivityCodeSetupkeyPeerAdd                          EventActivityCode = "setupkey.peer.add"
 	EventActivityCodeSetupkeyAdd                              EventActivityCode = "setupkey.add"
 	EventActivityCodeSetupkeyUpdate                           EventActivityCode = "setupkey.update"
@@ -53,6 +54,7 @@ const (
 	EventActivityCodePeerRename                               EventActivityCode = "peer.rename"
 	EventActivityCodePeerLoginExpirationDisable               EventActivityCode = "peer.login.expiration.disable"
 	EventActivityCodePeerLoginExpirationEnable                EventActivityCode = "peer.login.expiration.enable"
+	EventActivityCodePeerLoginExpire                          EventActivityCode = "peer.login.expire"
 	EventActivityCodeServiceUserCreate                        EventActivityCode = "service.user.create"
 	EventActivityCodePersonalAccessTokenCreate                EventActivityCode = "personal.access.token.create"
 	EventActivityCodeServiceUserDelete                        EventActivityCode = "service.user.delete"
@@ -86,6 +88,8 @@ func (e *EventActivityCode) UnmarshalJSON(data []byte) error {
 	case "user.block":
 		fallthrough
 	case "user.unblock":
+		fallthrough
+	case "user.peer.login":
 		fallthrough
 	case "setupkey.peer.add":
 		fallthrough
@@ -150,6 +154,8 @@ func (e *EventActivityCode) UnmarshalJSON(data []byte) error {
 	case "peer.login.expiration.disable":
 		fallthrough
 	case "peer.login.expiration.enable":
+		fallthrough
+	case "peer.login.expire":
 		fallthrough
 	case "service.user.create":
 		fallthrough
