@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // UserStatus - User's status
@@ -52,6 +53,8 @@ type User struct {
 	IsCurrent *bool `json:"is_current,omitempty"`
 	// Is true if this user is a service user
 	IsServiceUser *bool `json:"is_service_user,omitempty"`
+	// Last time this user performed a login to the dashboard
+	LastLogin *time.Time `json:"last_login,omitempty"`
 	// User's name from idp provider
 	Name string `json:"name"`
 	// User's NetBird account role
