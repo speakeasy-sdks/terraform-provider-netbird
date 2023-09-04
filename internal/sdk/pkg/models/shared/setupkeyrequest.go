@@ -6,6 +6,8 @@ package shared
 type SetupKeyRequest struct {
 	// List of group IDs to auto-assign to peers registered with this key
 	AutoGroups []string `json:"auto_groups"`
+	// Indicate that the peer will be ephemeral or not
+	Ephemeral *bool `json:"ephemeral,omitempty"`
 	// Expiration time in seconds
 	ExpiresIn int64 `json:"expires_in"`
 	// Setup Key name

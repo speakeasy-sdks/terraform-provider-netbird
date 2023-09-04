@@ -1,6 +1,6 @@
 configVersion: 1.0.0
 management:
-  docChecksum: c1ede3d4e4c05759f7d244b5b10cca2b
+  docChecksum: b1f30207009f0de88afab43aaae05797
   docVersion: 0.0.1
   speakeasyVersion: 1.77.2
   generationVersion: 2.93.0
@@ -19,6 +19,6 @@ features:
     globalServerURLs: 2.82.0
     methodSecurity: 2.81.1
 terraform:
-  version: 1.13.1
+  version: 1.13.2
   author: NetBird
   packageName: netbird

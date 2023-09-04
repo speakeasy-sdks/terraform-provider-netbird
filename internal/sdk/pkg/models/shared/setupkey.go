@@ -10,6 +10,8 @@ import (
 type SetupKey struct {
 	// List of group IDs to auto-assign to peers registered with this key
 	AutoGroups []string `json:"auto_groups"`
+	// Indicate that the peer will be ephemeral or not
+	Ephemeral bool `json:"ephemeral"`
 	// Setup Key expiration date
 	Expires time.Time `json:"expires"`
 	// Setup Key ID
