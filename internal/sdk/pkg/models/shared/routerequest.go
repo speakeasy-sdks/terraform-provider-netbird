@@ -2,7 +2,6 @@
 
 package shared
 
-// RouteRequest - New Routes request
 type RouteRequest struct {
 	// Route description
 	Description string `json:"description"`

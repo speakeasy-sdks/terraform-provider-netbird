@@ -2,7 +2,6 @@
 
 package shared
 
-// PeerRequest - update a peer
 type PeerRequest struct {
 	LoginExpirationEnabled bool   `json:"login_expiration_enabled"`
 	Name                   string `json:"name"`

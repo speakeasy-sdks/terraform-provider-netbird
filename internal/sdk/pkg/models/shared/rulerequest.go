@@ -2,7 +2,6 @@
 
 package shared
 
-// RuleRequest - New Rule request
 type RuleRequest struct {
 	// Rule friendly description
 	Description string `json:"description"`

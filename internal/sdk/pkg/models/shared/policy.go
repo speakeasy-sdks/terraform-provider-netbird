@@ -2,7 +2,6 @@
 
 package shared
 
-// Policy - A Policy Object
 type Policy struct {
 	// Policy friendly description
 	Description string `json:"description"`

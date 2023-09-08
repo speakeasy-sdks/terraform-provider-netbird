@@ -2,7 +2,6 @@
 
 package shared
 
-// Account - An Account object
 type Account struct {
 	// Account ID
 	ID       string          `json:"id"`

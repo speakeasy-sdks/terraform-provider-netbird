@@ -2,7 +2,6 @@
 
 package shared
 
-// Route - A Route Object
 type Route struct {
 	// Route description
 	Description string `json:"description"`

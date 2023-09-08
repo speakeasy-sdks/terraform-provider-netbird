@@ -2,7 +2,6 @@
 
 package shared
 
-// SetupKeyRequest - New Setup Key request
 type SetupKeyRequest struct {
 	// List of group IDs to auto-assign to peers registered with this key
 	AutoGroups []string `json:"auto_groups"`

@@ -6,7 +6,6 @@ import (
 	"time"
 )
 
-// Peer - A Peer object
 type Peer struct {
 	// Peer to Management connection status
 	Connected bool `json:"connected"`

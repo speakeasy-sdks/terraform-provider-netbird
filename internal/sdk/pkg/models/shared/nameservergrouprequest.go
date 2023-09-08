@@ -2,7 +2,6 @@
 
 package shared
 
-// NameserverGroupRequest - New Nameserver Groups request
 type NameserverGroupRequest struct {
 	// Nameserver group  description
 	Description string `json:"description"`

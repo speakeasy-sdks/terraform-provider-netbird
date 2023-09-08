@@ -2,7 +2,6 @@
 
 package shared
 
-// NameserverGroup - A Nameserver Groups Object
 type NameserverGroup struct {
 	// Nameserver group  description
 	Description string `json:"description"`

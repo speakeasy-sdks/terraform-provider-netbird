@@ -2,7 +2,6 @@
 
 package shared
 
-// Group - A Group Object
 type Group struct {
 	// Group ID
 	ID string `json:"id"`

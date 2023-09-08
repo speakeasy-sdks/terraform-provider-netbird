@@ -2,7 +2,6 @@
 
 package shared
 
-// AccountRequest - update an account
 type AccountRequest struct {
 	Settings AccountSettings `json:"settings"`
 }

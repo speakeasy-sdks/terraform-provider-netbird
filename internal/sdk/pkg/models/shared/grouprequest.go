@@ -2,7 +2,6 @@
 
 package shared
 
-// GroupRequest - New Group request
 type GroupRequest struct {
 	// Group name identifier
 	Name string `json:"name"`

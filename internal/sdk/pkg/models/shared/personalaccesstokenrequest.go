@@ -2,7 +2,6 @@
 
 package shared
 
-// PersonalAccessTokenRequest - PersonalAccessToken create parameters
 type PersonalAccessTokenRequest struct {
 	// Expiration in days
 	ExpiresIn int64 `json:"expires_in"`

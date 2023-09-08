@@ -2,7 +2,6 @@
 
 package shared
 
-// PolicyUpdate - New Policy request
 type PolicyUpdate struct {
 	// Policy friendly description
 	Description string `json:"description"`

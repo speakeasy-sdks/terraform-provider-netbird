@@ -6,7 +6,6 @@ import (
 	"time"
 )
 
-// PersonalAccessToken - A PersonalAccessTokens Object
 type PersonalAccessToken struct {
 	// Date the token was created
 	CreatedAt time.Time `json:"created_at"`

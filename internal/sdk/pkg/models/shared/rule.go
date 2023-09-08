@@ -2,7 +2,6 @@
 
 package shared
 
-// Rule - A Rule Object
 type Rule struct {
 	// Rule friendly description
 	Description string `json:"description"`

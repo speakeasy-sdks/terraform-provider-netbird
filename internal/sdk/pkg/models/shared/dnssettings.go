@@ -2,7 +2,6 @@
 
 package shared
 
-// DNSSettings - A DNS settings object
 type DNSSettings struct {
 	// Groups whose DNS management is disabled
 	DisabledManagementGroups []string `json:"disabled_management_groups"`

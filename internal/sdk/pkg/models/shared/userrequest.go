@@ -2,7 +2,6 @@
 
 package shared
 
-// UserRequest - User update
 type UserRequest struct {
 	// Groups to auto-assign to peers registered by this user
 	AutoGroups []string `json:"auto_groups"`

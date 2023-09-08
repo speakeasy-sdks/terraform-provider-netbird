@@ -6,7 +6,6 @@ import (
 	"time"
 )
 
-// SetupKey - A Setup Keys Object
 type SetupKey struct {
 	// List of group IDs to auto-assign to peers registered with this key
 	AutoGroups []string `json:"auto_groups"`
