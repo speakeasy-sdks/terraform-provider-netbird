@@ -178,6 +178,8 @@ type Event struct {
 	ActivityCode EventActivityCode `json:"activity_code"`
 	// Event unique identifier
 	ID string `json:"id"`
+	// The e-mail address of the initiator of the event. E.g., an e-mail of a user that triggered the event.
+	InitiatorEmail string `json:"initiator_email"`
 	// The ID of the initiator of the event. E.g., an ID of a user that triggered the event.
 	InitiatorID string `json:"initiator_id"`
 	// The metadata of the event
