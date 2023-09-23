@@ -182,6 +182,8 @@ type Event struct {
 	InitiatorEmail string `json:"initiator_email"`
 	// The ID of the initiator of the event. E.g., an ID of a user that triggered the event.
 	InitiatorID string `json:"initiator_id"`
+	// The name of the initiator of the event.
+	InitiatorName string `json:"initiator_name"`
 	// The metadata of the event
 	Meta map[string]string `json:"meta"`
 	// The ID of the target of the event. E.g., an ID of the peer that a user removed.

@@ -10,7 +10,7 @@ terraform {
   required_providers {
     netbird = {
       source  = "NetBird/netbird"
-      version = "1.15.0"
+      version = "1.15.1"
     }
   }
 }
@@ -45,8 +45,6 @@ TF_REATTACH_PROVIDERS=... terraform apply
 
 
 <!-- Start Dev Containers -->
-
-
 
 <!-- End Dev Containers -->
 
