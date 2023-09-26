@@ -13,9 +13,12 @@ type GetAPIPoliciesSecurity struct {
 }
 
 type GetAPIPoliciesResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// A JSON Array of Policies
-	Policies    []shared.Policy
-	StatusCode  int
+	Policies []shared.Policy
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }

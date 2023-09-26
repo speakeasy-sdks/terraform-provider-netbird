@@ -13,9 +13,12 @@ type GetAPIGroupsSecurity struct {
 }
 
 type GetAPIGroupsResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// A JSON Array of Groups
-	Groups      []shared.Group
-	StatusCode  int
+	Groups []shared.Group
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }

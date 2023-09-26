@@ -13,9 +13,12 @@ type GetAPIRulesSecurity struct {
 }
 
 type GetAPIRulesResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// A JSON Array of Rules
-	Rules       []shared.Rule
-	StatusCode  int
+	Rules []shared.Rule
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }

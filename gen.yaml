@@ -2,8 +2,8 @@ configVersion: 1.0.0
 management:
   docChecksum: 903410e2a8ba6204a8d4d679e8f82b90
   docVersion: 0.0.1
-  speakeasyVersion: 1.90.0
-  generationVersion: 2.125.1
+  speakeasyVersion: 1.91.0
+  generationVersion: 2.129.1
 generation:
   comments:
     disableComments: false
@@ -14,11 +14,11 @@ generation:
   tagNamespacingDisabled: false
 features:
   terraform:
-    core: 2.88.2
+    core: 2.89.0
     globalSecurity: 2.81.1
     globalServerURLs: 2.82.0
     methodSecurity: 2.82.0
 terraform:
-  version: 1.15.1
+  version: 1.16.0
   author: NetBird
   packageName: netbird

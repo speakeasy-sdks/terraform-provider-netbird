@@ -18,9 +18,12 @@ type GetAPIRoutesRouteIDRequest struct {
 }
 
 type GetAPIRoutesRouteIDResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// A Route object
-	Route       *shared.Route
-	StatusCode  int
+	Route *shared.Route
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }

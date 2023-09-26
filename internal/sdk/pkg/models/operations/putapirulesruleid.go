@@ -20,9 +20,12 @@ type PutAPIRulesRuleIDRequest struct {
 }
 
 type PutAPIRulesRuleIDResponse struct {
+	// HTTP response content type for this operation
 	ContentType string
 	// A Rule object
-	Rule        *shared.Rule
-	StatusCode  int
+	Rule *shared.Rule
+	// HTTP response status code for this operation
+	StatusCode int
+	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 }
