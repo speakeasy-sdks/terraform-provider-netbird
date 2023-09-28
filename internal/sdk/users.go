@@ -25,8 +25,8 @@ func newUsers(sdkConfig sdkConfiguration) *users {
 	}
 }
 
-// DeleteAPIUsersUserID - Block a User
-// This method blocks a user from accessing the system, but leaves the IDP user intact.
+// DeleteAPIUsersUserID - Delete a User
+// This method removes a user from accessing the system. For this leaves the IDP user intact unless the `--user-delete-from-idp` is passed to management startup.
 func (s *users) DeleteAPIUsersUserID(ctx context.Context, request operations.DeleteAPIUsersUserIDRequest, security operations.DeleteAPIUsersUserIDSecurity) (*operations.DeleteAPIUsersUserIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/users/{userId}", request, nil)
