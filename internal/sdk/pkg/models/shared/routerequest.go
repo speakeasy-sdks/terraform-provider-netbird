@@ -17,6 +17,8 @@ type RouteRequest struct {
 	Network string `json:"network"`
 	// Route network identifier, to group HA routes
 	NetworkID string `json:"network_id"`
-	// Peer Identifier associated with route
-	Peer string `json:"peer"`
+	// Peer Identifier associated with route. This property can not be set together with `peer_groups`
+	Peer *string `json:"peer,omitempty"`
+	// Peers Group Identifier associated with route. This property can not be set together with `peer`
+	PeerGroups []string `json:"peer_groups,omitempty"`
 }
