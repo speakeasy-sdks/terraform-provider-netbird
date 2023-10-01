@@ -10,7 +10,7 @@ terraform {
   required_providers {
     netbird = {
       source  = "NetBird/netbird"
-      version = "1.17.0"
+      version = "1.18.0"
     }
   }
 }
