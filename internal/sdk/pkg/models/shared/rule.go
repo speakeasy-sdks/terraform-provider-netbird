@@ -18,3 +18,52 @@ type Rule struct {
 	// Rule source groups
 	Sources []GroupMinimum `json:"sources"`
 }
+
+func (o *Rule) GetDescription() string {
+	if o == nil {
+		return ""
+	}
+	return o.Description
+}
+
+func (o *Rule) GetDestinations() []GroupMinimum {
+	if o == nil {
+		return []GroupMinimum{}
+	}
+	return o.Destinations
+}
+
+func (o *Rule) GetDisabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Disabled
+}
+
+func (o *Rule) GetFlow() string {
+	if o == nil {
+		return ""
+	}
+	return o.Flow
+}
+
+func (o *Rule) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Rule) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *Rule) GetSources() []GroupMinimum {
+	if o == nil {
+		return []GroupMinimum{}
+	}
+	return o.Sources
+}

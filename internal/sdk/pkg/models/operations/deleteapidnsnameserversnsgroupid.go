@@ -11,9 +11,30 @@ type DeleteAPIDNSNameserversNsgroupIDSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *DeleteAPIDNSNameserversNsgroupIDSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *DeleteAPIDNSNameserversNsgroupIDSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type DeleteAPIDNSNameserversNsgroupIDRequest struct {
 	// The unique identifier of a Nameserver Group
 	NsgroupID string `pathParam:"style=simple,explode=false,name=nsgroupId"`
+}
+
+func (o *DeleteAPIDNSNameserversNsgroupIDRequest) GetNsgroupID() string {
+	if o == nil {
+		return ""
+	}
+	return o.NsgroupID
 }
 
 type DeleteAPIDNSNameserversNsgroupIDResponse struct {
@@ -23,4 +44,25 @@ type DeleteAPIDNSNameserversNsgroupIDResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *DeleteAPIDNSNameserversNsgroupIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteAPIDNSNameserversNsgroupIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteAPIDNSNameserversNsgroupIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

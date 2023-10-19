@@ -14,3 +14,38 @@ type Group struct {
 	// Count of peers associated to the group
 	PeersCount int64 `json:"peers_count"`
 }
+
+func (o *Group) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Group) GetIssued() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Issued
+}
+
+func (o *Group) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *Group) GetPeers() []PeerMinimum {
+	if o == nil {
+		return []PeerMinimum{}
+	}
+	return o.Peers
+}
+
+func (o *Group) GetPeersCount() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PeersCount
+}

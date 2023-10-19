@@ -11,9 +11,30 @@ type DeleteAPIGroupsGroupIDSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *DeleteAPIGroupsGroupIDSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *DeleteAPIGroupsGroupIDSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type DeleteAPIGroupsGroupIDRequest struct {
 	// The unique identifier of a group
 	GroupID string `pathParam:"style=simple,explode=false,name=groupId"`
+}
+
+func (o *DeleteAPIGroupsGroupIDRequest) GetGroupID() string {
+	if o == nil {
+		return ""
+	}
+	return o.GroupID
 }
 
 type DeleteAPIGroupsGroupIDResponse struct {
@@ -23,4 +44,25 @@ type DeleteAPIGroupsGroupIDResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *DeleteAPIGroupsGroupIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteAPIGroupsGroupIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteAPIGroupsGroupIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

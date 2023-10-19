@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"netbird/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -190,4 +191,78 @@ type Event struct {
 	TargetID string `json:"target_id"`
 	// The date and time when the event occurred
 	Timestamp time.Time `json:"timestamp"`
+}
+
+func (e Event) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *Event) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Event) GetActivity() string {
+	if o == nil {
+		return ""
+	}
+	return o.Activity
+}
+
+func (o *Event) GetActivityCode() EventActivityCode {
+	if o == nil {
+		return EventActivityCode("")
+	}
+	return o.ActivityCode
+}
+
+func (o *Event) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Event) GetInitiatorEmail() string {
+	if o == nil {
+		return ""
+	}
+	return o.InitiatorEmail
+}
+
+func (o *Event) GetInitiatorID() string {
+	if o == nil {
+		return ""
+	}
+	return o.InitiatorID
+}
+
+func (o *Event) GetInitiatorName() string {
+	if o == nil {
+		return ""
+	}
+	return o.InitiatorName
+}
+
+func (o *Event) GetMeta() map[string]string {
+	if o == nil {
+		return map[string]string{}
+	}
+	return o.Meta
+}
+
+func (o *Event) GetTargetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.TargetID
+}
+
+func (o *Event) GetTimestamp() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.Timestamp
 }

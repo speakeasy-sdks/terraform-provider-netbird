@@ -22,3 +22,66 @@ type RouteRequest struct {
 	// Peers Group Identifier associated with route. This property can not be set together with `peer`
 	PeerGroups []string `json:"peer_groups,omitempty"`
 }
+
+func (o *RouteRequest) GetDescription() string {
+	if o == nil {
+		return ""
+	}
+	return o.Description
+}
+
+func (o *RouteRequest) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *RouteRequest) GetGroups() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Groups
+}
+
+func (o *RouteRequest) GetMasquerade() bool {
+	if o == nil {
+		return false
+	}
+	return o.Masquerade
+}
+
+func (o *RouteRequest) GetMetric() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Metric
+}
+
+func (o *RouteRequest) GetNetwork() string {
+	if o == nil {
+		return ""
+	}
+	return o.Network
+}
+
+func (o *RouteRequest) GetNetworkID() string {
+	if o == nil {
+		return ""
+	}
+	return o.NetworkID
+}
+
+func (o *RouteRequest) GetPeer() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Peer
+}
+
+func (o *RouteRequest) GetPeerGroups() []string {
+	if o == nil {
+		return nil
+	}
+	return o.PeerGroups
+}

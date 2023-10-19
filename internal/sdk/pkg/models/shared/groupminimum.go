@@ -12,3 +12,31 @@ type GroupMinimum struct {
 	// Count of peers associated to the group
 	PeersCount int64 `json:"peers_count"`
 }
+
+func (o *GroupMinimum) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *GroupMinimum) GetIssued() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Issued
+}
+
+func (o *GroupMinimum) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *GroupMinimum) GetPeersCount() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PeersCount
+}

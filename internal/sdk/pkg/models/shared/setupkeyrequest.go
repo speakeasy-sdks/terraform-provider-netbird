@@ -18,3 +18,52 @@ type SetupKeyRequest struct {
 	// A number of times this key can be used. The value of 0 indicates the unlimited usage.
 	UsageLimit int64 `json:"usage_limit"`
 }
+
+func (o *SetupKeyRequest) GetAutoGroups() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.AutoGroups
+}
+
+func (o *SetupKeyRequest) GetEphemeral() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Ephemeral
+}
+
+func (o *SetupKeyRequest) GetExpiresIn() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ExpiresIn
+}
+
+func (o *SetupKeyRequest) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *SetupKeyRequest) GetRevoked() bool {
+	if o == nil {
+		return false
+	}
+	return o.Revoked
+}
+
+func (o *SetupKeyRequest) GetType() string {
+	if o == nil {
+		return ""
+	}
+	return o.Type
+}
+
+func (o *SetupKeyRequest) GetUsageLimit() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.UsageLimit
+}

@@ -12,11 +12,39 @@ type PutAPIAccountsAccountIDSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *PutAPIAccountsAccountIDSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *PutAPIAccountsAccountIDSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type PutAPIAccountsAccountIDRequest struct {
 	// update an account
 	AccountRequest *shared.AccountRequest `request:"mediaType=application/json"`
 	// The unique identifier of an account
 	AccountID string `pathParam:"style=simple,explode=false,name=accountId"`
+}
+
+func (o *PutAPIAccountsAccountIDRequest) GetAccountRequest() *shared.AccountRequest {
+	if o == nil {
+		return nil
+	}
+	return o.AccountRequest
+}
+
+func (o *PutAPIAccountsAccountIDRequest) GetAccountID() string {
+	if o == nil {
+		return ""
+	}
+	return o.AccountID
 }
 
 type PutAPIAccountsAccountIDResponse struct {
@@ -28,4 +56,32 @@ type PutAPIAccountsAccountIDResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *PutAPIAccountsAccountIDResponse) GetAccount() *shared.Account {
+	if o == nil {
+		return nil
+	}
+	return o.Account
+}
+
+func (o *PutAPIAccountsAccountIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PutAPIAccountsAccountIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PutAPIAccountsAccountIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

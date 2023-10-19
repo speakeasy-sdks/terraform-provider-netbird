@@ -9,6 +9,7 @@ import (
 	"io"
 	"net/http"
 	"netbird/internal/sdk/pkg/models/operations"
+	"netbird/internal/sdk/pkg/models/sdkerrors"
 	"netbird/internal/sdk/pkg/models/shared"
 	"netbird/internal/sdk/pkg/utils"
 	"strings"
@@ -38,7 +39,7 @@ func (s *events) GetAPIEvents(ctx context.Context, security operations.GetAPIEve
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
 
-	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, security)
+	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, withSecurity(security))
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -67,11 +68,13 @@ func (s *events) GetAPIEvents(ctx context.Context, security operations.GetAPIEve
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out []shared.Event
-			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out); err != nil {
-				return res, err
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
 			}
 
 			res.Events = out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
 	case httpRes.StatusCode == 400:
 		fallthrough

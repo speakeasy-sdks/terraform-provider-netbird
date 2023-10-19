@@ -91,3 +91,73 @@ type PolicyRule struct {
 	// Policy rule source groups
 	Sources []GroupMinimum `json:"sources"`
 }
+
+func (o *PolicyRule) GetAction() PolicyRuleAction {
+	if o == nil {
+		return PolicyRuleAction("")
+	}
+	return o.Action
+}
+
+func (o *PolicyRule) GetBidirectional() bool {
+	if o == nil {
+		return false
+	}
+	return o.Bidirectional
+}
+
+func (o *PolicyRule) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *PolicyRule) GetDestinations() []GroupMinimum {
+	if o == nil {
+		return []GroupMinimum{}
+	}
+	return o.Destinations
+}
+
+func (o *PolicyRule) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *PolicyRule) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *PolicyRule) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *PolicyRule) GetPorts() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Ports
+}
+
+func (o *PolicyRule) GetProtocol() PolicyRuleProtocol {
+	if o == nil {
+		return PolicyRuleProtocol("")
+	}
+	return o.Protocol
+}
+
+func (o *PolicyRule) GetSources() []GroupMinimum {
+	if o == nil {
+		return []GroupMinimum{}
+	}
+	return o.Sources
+}

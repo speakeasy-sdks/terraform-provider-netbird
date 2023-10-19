@@ -8,3 +8,17 @@ type PeerMinimum struct {
 	// Peer's hostname
 	Name string `json:"name"`
 }
+
+func (o *PeerMinimum) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *PeerMinimum) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}

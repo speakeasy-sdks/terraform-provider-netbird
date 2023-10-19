@@ -40,3 +40,24 @@ type Nameserver struct {
 	// Nameserver Port
 	Port int64 `json:"port"`
 }
+
+func (o *Nameserver) GetIP() string {
+	if o == nil {
+		return ""
+	}
+	return o.IP
+}
+
+func (o *Nameserver) GetNsType() NameserverNsType {
+	if o == nil {
+		return NameserverNsType("")
+	}
+	return o.NsType
+}
+
+func (o *Nameserver) GetPort() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.Port
+}

@@ -38,12 +38,16 @@ internal/provider/reflect/primitive.go
 internal/provider/reflect/slice.go
 internal/provider/reflect/struct.go
 internal/provider/utils.go
+internal/sdk/pkg/models/sdkerrors/sdkerror.go
 internal/sdk/pkg/types/bigint.go
 internal/sdk/pkg/types/date.go
 internal/sdk/pkg/types/datetime.go
+internal/sdk/pkg/types/decimal.go
+internal/sdk/pkg/types/pointers.go
 internal/sdk/pkg/utils/contenttype.go
 internal/sdk/pkg/utils/form.go
 internal/sdk/pkg/utils/headers.go
+internal/sdk/pkg/utils/json.go
 internal/sdk/pkg/utils/pathparams.go
 internal/sdk/pkg/utils/queryparams.go
 internal/sdk/pkg/utils/requestbody.go

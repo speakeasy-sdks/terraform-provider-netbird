@@ -12,6 +12,20 @@ type GetAPIDNSNameserversSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *GetAPIDNSNameserversSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *GetAPIDNSNameserversSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type GetAPIDNSNameserversResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -21,4 +35,32 @@ type GetAPIDNSNameserversResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *GetAPIDNSNameserversResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAPIDNSNameserversResponse) GetNameserverGroups() []shared.NameserverGroup {
+	if o == nil {
+		return nil
+	}
+	return o.NameserverGroups
+}
+
+func (o *GetAPIDNSNameserversResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAPIDNSNameserversResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

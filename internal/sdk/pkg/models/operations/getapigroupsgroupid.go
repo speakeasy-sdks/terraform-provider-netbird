@@ -12,9 +12,30 @@ type GetAPIGroupsGroupIDSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *GetAPIGroupsGroupIDSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *GetAPIGroupsGroupIDSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type GetAPIGroupsGroupIDRequest struct {
 	// The unique identifier of a group
 	GroupID string `pathParam:"style=simple,explode=false,name=groupId"`
+}
+
+func (o *GetAPIGroupsGroupIDRequest) GetGroupID() string {
+	if o == nil {
+		return ""
+	}
+	return o.GroupID
 }
 
 type GetAPIGroupsGroupIDResponse struct {
@@ -26,4 +47,32 @@ type GetAPIGroupsGroupIDResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *GetAPIGroupsGroupIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAPIGroupsGroupIDResponse) GetGroup() *shared.Group {
+	if o == nil {
+		return nil
+	}
+	return o.Group
+}
+
+func (o *GetAPIGroupsGroupIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAPIGroupsGroupIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

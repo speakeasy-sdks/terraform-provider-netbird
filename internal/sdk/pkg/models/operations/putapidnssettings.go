@@ -12,6 +12,20 @@ type PutAPIDNSSettingsSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *PutAPIDNSSettingsSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *PutAPIDNSSettingsSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type PutAPIDNSSettingsResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -21,4 +35,32 @@ type PutAPIDNSSettingsResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *PutAPIDNSSettingsResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PutAPIDNSSettingsResponse) GetDNSSettings() *shared.DNSSettings {
+	if o == nil {
+		return nil
+	}
+	return o.DNSSettings
+}
+
+func (o *PutAPIDNSSettingsResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PutAPIDNSSettingsResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

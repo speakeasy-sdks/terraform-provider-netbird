@@ -6,3 +6,10 @@ type DNSSettings struct {
 	// Groups whose DNS management is disabled
 	DisabledManagementGroups []string `json:"disabled_management_groups"`
 }
+
+func (o *DNSSettings) GetDisabledManagementGroups() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.DisabledManagementGroups
+}

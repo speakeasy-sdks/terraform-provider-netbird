@@ -16,3 +16,45 @@ type Policy struct {
 	// Policy rule object for policy UI editor
 	Rules []PolicyRule `json:"rules"`
 }
+
+func (o *Policy) GetDescription() string {
+	if o == nil {
+		return ""
+	}
+	return o.Description
+}
+
+func (o *Policy) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *Policy) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *Policy) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *Policy) GetQuery() string {
+	if o == nil {
+		return ""
+	}
+	return o.Query
+}
+
+func (o *Policy) GetRules() []PolicyRule {
+	if o == nil {
+		return []PolicyRule{}
+	}
+	return o.Rules
+}

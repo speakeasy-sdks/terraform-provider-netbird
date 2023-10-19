@@ -5,7 +5,7 @@ package shared
 type NameserverGroup struct {
 	// Nameserver group  description
 	Description string `json:"description"`
-	// Nameserver group domain list
+	// Nameserver group match domain list
 	Domains []string `json:"domains"`
 	// Nameserver group status
 	Enabled bool `json:"enabled"`
@@ -19,4 +19,69 @@ type NameserverGroup struct {
 	Nameservers []Nameserver `json:"nameservers"`
 	// Nameserver group primary status
 	Primary bool `json:"primary"`
+	// Nameserver group search domain status for match domains. It should be true only if domains list is not empty.
+	SearchDomainsEnabled bool `json:"search_domains_enabled"`
+}
+
+func (o *NameserverGroup) GetDescription() string {
+	if o == nil {
+		return ""
+	}
+	return o.Description
+}
+
+func (o *NameserverGroup) GetDomains() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Domains
+}
+
+func (o *NameserverGroup) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *NameserverGroup) GetGroups() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Groups
+}
+
+func (o *NameserverGroup) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *NameserverGroup) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *NameserverGroup) GetNameservers() []Nameserver {
+	if o == nil {
+		return []Nameserver{}
+	}
+	return o.Nameservers
+}
+
+func (o *NameserverGroup) GetPrimary() bool {
+	if o == nil {
+		return false
+	}
+	return o.Primary
+}
+
+func (o *NameserverGroup) GetSearchDomainsEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.SearchDomainsEnabled
 }

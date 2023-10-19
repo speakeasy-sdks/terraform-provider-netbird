@@ -14,3 +14,38 @@ type AccountSettings struct {
 	// Enables or disables peer login expiration globally. After peer's login has expired the user has to log in (authenticate). Applies only to peers that were added by a user (interactive SSO login).
 	PeerLoginExpirationEnabled bool `json:"peer_login_expiration_enabled"`
 }
+
+func (o *AccountSettings) GetGroupsPropagationEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.GroupsPropagationEnabled
+}
+
+func (o *AccountSettings) GetJwtGroupsClaimName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.JwtGroupsClaimName
+}
+
+func (o *AccountSettings) GetJwtGroupsEnabled() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.JwtGroupsEnabled
+}
+
+func (o *AccountSettings) GetPeerLoginExpiration() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.PeerLoginExpiration
+}
+
+func (o *AccountSettings) GetPeerLoginExpirationEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.PeerLoginExpirationEnabled
+}

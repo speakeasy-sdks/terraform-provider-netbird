@@ -12,6 +12,20 @@ type GetAPIPoliciesSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *GetAPIPoliciesSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *GetAPIPoliciesSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type GetAPIPoliciesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -21,4 +35,32 @@ type GetAPIPoliciesResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *GetAPIPoliciesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAPIPoliciesResponse) GetPolicies() []shared.Policy {
+	if o == nil {
+		return nil
+	}
+	return o.Policies
+}
+
+func (o *GetAPIPoliciesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAPIPoliciesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

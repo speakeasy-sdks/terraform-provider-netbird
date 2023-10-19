@@ -12,6 +12,20 @@ type GetAPIRoutesSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *GetAPIRoutesSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *GetAPIRoutesSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type GetAPIRoutesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
@@ -21,4 +35,32 @@ type GetAPIRoutesResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *GetAPIRoutesResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAPIRoutesResponse) GetRoutes() []shared.Route {
+	if o == nil {
+		return nil
+	}
+	return o.Routes
+}
+
+func (o *GetAPIRoutesResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAPIRoutesResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

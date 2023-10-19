@@ -5,6 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
+	"netbird/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -60,4 +61,85 @@ type User struct {
 	Role string `json:"role"`
 	// User's status
 	Status UserStatus `json:"status"`
+}
+
+func (u User) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *User) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *User) GetAutoGroups() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.AutoGroups
+}
+
+func (o *User) GetEmail() string {
+	if o == nil {
+		return ""
+	}
+	return o.Email
+}
+
+func (o *User) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *User) GetIsBlocked() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsBlocked
+}
+
+func (o *User) GetIsCurrent() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsCurrent
+}
+
+func (o *User) GetIsServiceUser() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.IsServiceUser
+}
+
+func (o *User) GetLastLogin() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.LastLogin
+}
+
+func (o *User) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *User) GetRole() string {
+	if o == nil {
+		return ""
+	}
+	return o.Role
+}
+
+func (o *User) GetStatus() UserStatus {
+	if o == nil {
+		return UserStatus("")
+	}
+	return o.Status
 }

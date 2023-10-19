@@ -8,3 +8,17 @@ type GroupRequest struct {
 	// List of peers ids
 	Peers []string `json:"peers,omitempty"`
 }
+
+func (o *GroupRequest) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *GroupRequest) GetPeers() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Peers
+}

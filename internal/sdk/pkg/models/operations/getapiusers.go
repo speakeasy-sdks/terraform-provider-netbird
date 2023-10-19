@@ -12,9 +12,30 @@ type GetAPIUsersSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *GetAPIUsersSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *GetAPIUsersSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type GetAPIUsersRequest struct {
 	// Filters users and returns either regular users or service users
 	ServiceUser *bool `queryParam:"style=form,explode=true,name=service_user"`
+}
+
+func (o *GetAPIUsersRequest) GetServiceUser() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ServiceUser
 }
 
 type GetAPIUsersResponse struct {
@@ -26,4 +47,32 @@ type GetAPIUsersResponse struct {
 	RawResponse *http.Response
 	// A JSON array of Users
 	Users []shared.User
+}
+
+func (o *GetAPIUsersResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAPIUsersResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAPIUsersResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *GetAPIUsersResponse) GetUsers() []shared.User {
+	if o == nil {
+		return nil
+	}
+	return o.Users
 }

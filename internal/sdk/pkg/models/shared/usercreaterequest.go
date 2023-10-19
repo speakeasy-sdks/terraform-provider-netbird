@@ -14,3 +14,38 @@ type UserCreateRequest struct {
 	// User's NetBird account role
 	Role string `json:"role"`
 }
+
+func (o *UserCreateRequest) GetAutoGroups() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.AutoGroups
+}
+
+func (o *UserCreateRequest) GetEmail() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Email
+}
+
+func (o *UserCreateRequest) GetIsServiceUser() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsServiceUser
+}
+
+func (o *UserCreateRequest) GetName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Name
+}
+
+func (o *UserCreateRequest) GetRole() string {
+	if o == nil {
+		return ""
+	}
+	return o.Role
+}

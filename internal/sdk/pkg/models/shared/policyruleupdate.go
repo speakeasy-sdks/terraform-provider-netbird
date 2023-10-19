@@ -91,3 +91,73 @@ type PolicyRuleUpdate struct {
 	// Policy rule source groups
 	Sources []string `json:"sources"`
 }
+
+func (o *PolicyRuleUpdate) GetAction() PolicyRuleUpdateAction {
+	if o == nil {
+		return PolicyRuleUpdateAction("")
+	}
+	return o.Action
+}
+
+func (o *PolicyRuleUpdate) GetBidirectional() bool {
+	if o == nil {
+		return false
+	}
+	return o.Bidirectional
+}
+
+func (o *PolicyRuleUpdate) GetDescription() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Description
+}
+
+func (o *PolicyRuleUpdate) GetDestinations() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Destinations
+}
+
+func (o *PolicyRuleUpdate) GetEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Enabled
+}
+
+func (o *PolicyRuleUpdate) GetID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *PolicyRuleUpdate) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *PolicyRuleUpdate) GetPorts() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Ports
+}
+
+func (o *PolicyRuleUpdate) GetProtocol() PolicyRuleUpdateProtocol {
+	if o == nil {
+		return PolicyRuleUpdateProtocol("")
+	}
+	return o.Protocol
+}
+
+func (o *PolicyRuleUpdate) GetSources() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.Sources
+}

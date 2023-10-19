@@ -12,11 +12,39 @@ type PutAPIGroupsGroupIDSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *PutAPIGroupsGroupIDSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *PutAPIGroupsGroupIDSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type PutAPIGroupsGroupIDRequest struct {
 	// Update Group request
 	GroupRequest *shared.GroupRequest `request:"mediaType=application/json"`
 	// The unique identifier of a group
 	GroupID string `pathParam:"style=simple,explode=false,name=groupId"`
+}
+
+func (o *PutAPIGroupsGroupIDRequest) GetGroupRequest() *shared.GroupRequest {
+	if o == nil {
+		return nil
+	}
+	return o.GroupRequest
+}
+
+func (o *PutAPIGroupsGroupIDRequest) GetGroupID() string {
+	if o == nil {
+		return ""
+	}
+	return o.GroupID
 }
 
 type PutAPIGroupsGroupIDResponse struct {
@@ -28,4 +56,32 @@ type PutAPIGroupsGroupIDResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *PutAPIGroupsGroupIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PutAPIGroupsGroupIDResponse) GetGroup() *shared.Group {
+	if o == nil {
+		return nil
+	}
+	return o.Group
+}
+
+func (o *PutAPIGroupsGroupIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PutAPIGroupsGroupIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

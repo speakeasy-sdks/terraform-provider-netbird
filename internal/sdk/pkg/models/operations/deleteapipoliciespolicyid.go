@@ -11,9 +11,30 @@ type DeleteAPIPoliciesPolicyIDSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *DeleteAPIPoliciesPolicyIDSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *DeleteAPIPoliciesPolicyIDSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type DeleteAPIPoliciesPolicyIDRequest struct {
 	// The unique identifier of a policy
 	PolicyID string `pathParam:"style=simple,explode=false,name=policyId"`
+}
+
+func (o *DeleteAPIPoliciesPolicyIDRequest) GetPolicyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.PolicyID
 }
 
 type DeleteAPIPoliciesPolicyIDResponse struct {
@@ -23,4 +44,25 @@ type DeleteAPIPoliciesPolicyIDResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *DeleteAPIPoliciesPolicyIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteAPIPoliciesPolicyIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteAPIPoliciesPolicyIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

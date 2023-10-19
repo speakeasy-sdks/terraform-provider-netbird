@@ -11,9 +11,30 @@ type DeleteAPIPeersPeerIDSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *DeleteAPIPeersPeerIDSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *DeleteAPIPeersPeerIDSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type DeleteAPIPeersPeerIDRequest struct {
 	// The unique identifier of a peer
 	PeerID string `pathParam:"style=simple,explode=false,name=peerId"`
+}
+
+func (o *DeleteAPIPeersPeerIDRequest) GetPeerID() string {
+	if o == nil {
+		return ""
+	}
+	return o.PeerID
 }
 
 type DeleteAPIPeersPeerIDResponse struct {
@@ -23,4 +44,25 @@ type DeleteAPIPeersPeerIDResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *DeleteAPIPeersPeerIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteAPIPeersPeerIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteAPIPeersPeerIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

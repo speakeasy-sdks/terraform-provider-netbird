@@ -12,11 +12,39 @@ type PutAPIUsersUserIDSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *PutAPIUsersUserIDSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *PutAPIUsersUserIDSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type PutAPIUsersUserIDRequest struct {
 	// User update
 	UserRequest *shared.UserRequest `request:"mediaType=application/json"`
 	// The unique identifier of a user
 	UserID string `pathParam:"style=simple,explode=false,name=userId"`
+}
+
+func (o *PutAPIUsersUserIDRequest) GetUserRequest() *shared.UserRequest {
+	if o == nil {
+		return nil
+	}
+	return o.UserRequest
+}
+
+func (o *PutAPIUsersUserIDRequest) GetUserID() string {
+	if o == nil {
+		return ""
+	}
+	return o.UserID
 }
 
 type PutAPIUsersUserIDResponse struct {
@@ -28,4 +56,32 @@ type PutAPIUsersUserIDResponse struct {
 	RawResponse *http.Response
 	// A User object
 	User *shared.User
+}
+
+func (o *PutAPIUsersUserIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PutAPIUsersUserIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PutAPIUsersUserIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
+}
+
+func (o *PutAPIUsersUserIDResponse) GetUser() *shared.User {
+	if o == nil {
+		return nil
+	}
+	return o.User
 }

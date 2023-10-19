@@ -12,9 +12,30 @@ type GetAPIPeersPeerIDSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *GetAPIPeersPeerIDSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *GetAPIPeersPeerIDSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type GetAPIPeersPeerIDRequest struct {
 	// The unique identifier of a peer
 	PeerID string `pathParam:"style=simple,explode=false,name=peerId"`
+}
+
+func (o *GetAPIPeersPeerIDRequest) GetPeerID() string {
+	if o == nil {
+		return ""
+	}
+	return o.PeerID
 }
 
 type GetAPIPeersPeerIDResponse struct {
@@ -26,4 +47,32 @@ type GetAPIPeersPeerIDResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *GetAPIPeersPeerIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAPIPeersPeerIDResponse) GetPeer() *shared.Peer {
+	if o == nil {
+		return nil
+	}
+	return o.Peer
+}
+
+func (o *GetAPIPeersPeerIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAPIPeersPeerIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

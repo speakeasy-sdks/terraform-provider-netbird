@@ -11,9 +11,30 @@ type DeleteAPIRoutesRouteIDSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *DeleteAPIRoutesRouteIDSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *DeleteAPIRoutesRouteIDSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type DeleteAPIRoutesRouteIDRequest struct {
 	// The unique identifier of a route
 	RouteID string `pathParam:"style=simple,explode=false,name=routeId"`
+}
+
+func (o *DeleteAPIRoutesRouteIDRequest) GetRouteID() string {
+	if o == nil {
+		return ""
+	}
+	return o.RouteID
 }
 
 type DeleteAPIRoutesRouteIDResponse struct {
@@ -23,4 +44,25 @@ type DeleteAPIRoutesRouteIDResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *DeleteAPIRoutesRouteIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteAPIRoutesRouteIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteAPIRoutesRouteIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

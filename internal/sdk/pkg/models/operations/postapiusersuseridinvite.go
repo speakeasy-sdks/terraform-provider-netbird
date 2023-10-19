@@ -11,9 +11,30 @@ type PostAPIUsersUserIDInviteSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *PostAPIUsersUserIDInviteSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *PostAPIUsersUserIDInviteSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type PostAPIUsersUserIDInviteRequest struct {
 	// The unique identifier of a user
 	UserID string `pathParam:"style=simple,explode=false,name=userId"`
+}
+
+func (o *PostAPIUsersUserIDInviteRequest) GetUserID() string {
+	if o == nil {
+		return ""
+	}
+	return o.UserID
 }
 
 type PostAPIUsersUserIDInviteResponse struct {
@@ -23,4 +44,25 @@ type PostAPIUsersUserIDInviteResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *PostAPIUsersUserIDInviteResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PostAPIUsersUserIDInviteResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PostAPIUsersUserIDInviteResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

@@ -3,6 +3,7 @@
 package shared
 
 import (
+	"netbird/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -39,4 +40,127 @@ type Peer struct {
 	UserID *string `json:"user_id,omitempty"`
 	// Peer's daemon or cli version
 	Version string `json:"version"`
+}
+
+func (p Peer) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *Peer) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *Peer) GetConnected() bool {
+	if o == nil {
+		return false
+	}
+	return o.Connected
+}
+
+func (o *Peer) GetDNSLabel() string {
+	if o == nil {
+		return ""
+	}
+	return o.DNSLabel
+}
+
+func (o *Peer) GetGroups() []GroupMinimum {
+	if o == nil {
+		return []GroupMinimum{}
+	}
+	return o.Groups
+}
+
+func (o *Peer) GetHostname() string {
+	if o == nil {
+		return ""
+	}
+	return o.Hostname
+}
+
+func (o *Peer) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Peer) GetIP() string {
+	if o == nil {
+		return ""
+	}
+	return o.IP
+}
+
+func (o *Peer) GetLastLogin() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.LastLogin
+}
+
+func (o *Peer) GetLastSeen() time.Time {
+	if o == nil {
+		return time.Time{}
+	}
+	return o.LastSeen
+}
+
+func (o *Peer) GetLoginExpirationEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.LoginExpirationEnabled
+}
+
+func (o *Peer) GetLoginExpired() bool {
+	if o == nil {
+		return false
+	}
+	return o.LoginExpired
+}
+
+func (o *Peer) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *Peer) GetOs() string {
+	if o == nil {
+		return ""
+	}
+	return o.Os
+}
+
+func (o *Peer) GetSSHEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.SSHEnabled
+}
+
+func (o *Peer) GetUIVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UIVersion
+}
+
+func (o *Peer) GetUserID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.UserID
+}
+
+func (o *Peer) GetVersion() string {
+	if o == nil {
+		return ""
+	}
+	return o.Version
 }

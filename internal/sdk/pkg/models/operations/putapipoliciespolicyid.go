@@ -12,11 +12,39 @@ type PutAPIPoliciesPolicyIDSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *PutAPIPoliciesPolicyIDSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *PutAPIPoliciesPolicyIDSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type PutAPIPoliciesPolicyIDRequest struct {
 	// Update Policy request
 	PolicyUpdate *shared.PolicyUpdate `request:"mediaType=application/json"`
 	// The unique identifier of a policy
 	PolicyID string `pathParam:"style=simple,explode=false,name=policyId"`
+}
+
+func (o *PutAPIPoliciesPolicyIDRequest) GetPolicyUpdate() *shared.PolicyUpdate {
+	if o == nil {
+		return nil
+	}
+	return o.PolicyUpdate
+}
+
+func (o *PutAPIPoliciesPolicyIDRequest) GetPolicyID() string {
+	if o == nil {
+		return ""
+	}
+	return o.PolicyID
 }
 
 type PutAPIPoliciesPolicyIDResponse struct {
@@ -28,4 +56,32 @@ type PutAPIPoliciesPolicyIDResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *PutAPIPoliciesPolicyIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PutAPIPoliciesPolicyIDResponse) GetPolicy() *shared.Policy {
+	if o == nil {
+		return nil
+	}
+	return o.Policy
+}
+
+func (o *PutAPIPoliciesPolicyIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PutAPIPoliciesPolicyIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

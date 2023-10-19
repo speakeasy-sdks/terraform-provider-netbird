@@ -16,3 +16,45 @@ type RuleRequest struct {
 	// List of source groups
 	Sources []string `json:"sources,omitempty"`
 }
+
+func (o *RuleRequest) GetDescription() string {
+	if o == nil {
+		return ""
+	}
+	return o.Description
+}
+
+func (o *RuleRequest) GetDestinations() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Destinations
+}
+
+func (o *RuleRequest) GetDisabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.Disabled
+}
+
+func (o *RuleRequest) GetFlow() string {
+	if o == nil {
+		return ""
+	}
+	return o.Flow
+}
+
+func (o *RuleRequest) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *RuleRequest) GetSources() []string {
+	if o == nil {
+		return nil
+	}
+	return o.Sources
+}

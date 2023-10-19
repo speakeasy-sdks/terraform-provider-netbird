@@ -7,3 +7,24 @@ type PeerRequest struct {
 	Name                   string `json:"name"`
 	SSHEnabled             bool   `json:"ssh_enabled"`
 }
+
+func (o *PeerRequest) GetLoginExpirationEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.LoginExpirationEnabled
+}
+
+func (o *PeerRequest) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}
+
+func (o *PeerRequest) GetSSHEnabled() bool {
+	if o == nil {
+		return false
+	}
+	return o.SSHEnabled
+}

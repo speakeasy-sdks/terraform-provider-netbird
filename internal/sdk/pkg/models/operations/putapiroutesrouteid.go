@@ -12,11 +12,39 @@ type PutAPIRoutesRouteIDSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *PutAPIRoutesRouteIDSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *PutAPIRoutesRouteIDSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type PutAPIRoutesRouteIDRequest struct {
 	// Update Route request
 	RouteRequest *shared.RouteRequest `request:"mediaType=application/json"`
 	// The unique identifier of a route
 	RouteID string `pathParam:"style=simple,explode=false,name=routeId"`
+}
+
+func (o *PutAPIRoutesRouteIDRequest) GetRouteRequest() *shared.RouteRequest {
+	if o == nil {
+		return nil
+	}
+	return o.RouteRequest
+}
+
+func (o *PutAPIRoutesRouteIDRequest) GetRouteID() string {
+	if o == nil {
+		return ""
+	}
+	return o.RouteID
 }
 
 type PutAPIRoutesRouteIDResponse struct {
@@ -28,4 +56,32 @@ type PutAPIRoutesRouteIDResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *PutAPIRoutesRouteIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *PutAPIRoutesRouteIDResponse) GetRoute() *shared.Route {
+	if o == nil {
+		return nil
+	}
+	return o.Route
+}
+
+func (o *PutAPIRoutesRouteIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *PutAPIRoutesRouteIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

@@ -12,9 +12,30 @@ type GetAPIUsersUserIDTokensSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *GetAPIUsersUserIDTokensSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *GetAPIUsersUserIDTokensSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type GetAPIUsersUserIDTokensRequest struct {
 	// The unique identifier of a user
 	UserID string `pathParam:"style=simple,explode=false,name=userId"`
+}
+
+func (o *GetAPIUsersUserIDTokensRequest) GetUserID() string {
+	if o == nil {
+		return ""
+	}
+	return o.UserID
 }
 
 type GetAPIUsersUserIDTokensResponse struct {
@@ -26,4 +47,32 @@ type GetAPIUsersUserIDTokensResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *GetAPIUsersUserIDTokensResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *GetAPIUsersUserIDTokensResponse) GetPersonalAccessTokens() []shared.PersonalAccessToken {
+	if o == nil {
+		return nil
+	}
+	return o.PersonalAccessTokens
+}
+
+func (o *GetAPIUsersUserIDTokensResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *GetAPIUsersUserIDTokensResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

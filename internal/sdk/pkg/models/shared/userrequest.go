@@ -10,3 +10,24 @@ type UserRequest struct {
 	// User's NetBird account role
 	Role string `json:"role"`
 }
+
+func (o *UserRequest) GetAutoGroups() []string {
+	if o == nil {
+		return []string{}
+	}
+	return o.AutoGroups
+}
+
+func (o *UserRequest) GetIsBlocked() bool {
+	if o == nil {
+		return false
+	}
+	return o.IsBlocked
+}
+
+func (o *UserRequest) GetRole() string {
+	if o == nil {
+		return ""
+	}
+	return o.Role
+}

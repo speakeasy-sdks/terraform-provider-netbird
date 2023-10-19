@@ -7,3 +7,17 @@ type PersonalAccessTokenGenerated struct {
 	// Plain text representation of the generated token
 	PlainToken string `json:"plain_token"`
 }
+
+func (o *PersonalAccessTokenGenerated) GetPersonalAccessToken() PersonalAccessToken {
+	if o == nil {
+		return PersonalAccessToken{}
+	}
+	return o.PersonalAccessToken
+}
+
+func (o *PersonalAccessTokenGenerated) GetPlainToken() string {
+	if o == nil {
+		return ""
+	}
+	return o.PlainToken
+}

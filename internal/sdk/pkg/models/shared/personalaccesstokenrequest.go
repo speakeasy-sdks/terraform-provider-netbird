@@ -8,3 +8,17 @@ type PersonalAccessTokenRequest struct {
 	// Name of the token
 	Name string `json:"name"`
 }
+
+func (o *PersonalAccessTokenRequest) GetExpiresIn() int64 {
+	if o == nil {
+		return 0
+	}
+	return o.ExpiresIn
+}
+
+func (o *PersonalAccessTokenRequest) GetName() string {
+	if o == nil {
+		return ""
+	}
+	return o.Name
+}

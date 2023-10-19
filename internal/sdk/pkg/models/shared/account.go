@@ -7,3 +7,17 @@ type Account struct {
 	ID       string          `json:"id"`
 	Settings AccountSettings `json:"settings"`
 }
+
+func (o *Account) GetID() string {
+	if o == nil {
+		return ""
+	}
+	return o.ID
+}
+
+func (o *Account) GetSettings() AccountSettings {
+	if o == nil {
+		return AccountSettings{}
+	}
+	return o.Settings
+}

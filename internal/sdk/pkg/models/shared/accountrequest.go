@@ -5,3 +5,10 @@ package shared
 type AccountRequest struct {
 	Settings AccountSettings `json:"settings"`
 }
+
+func (o *AccountRequest) GetSettings() AccountSettings {
+	if o == nil {
+		return AccountSettings{}
+	}
+	return o.Settings
+}

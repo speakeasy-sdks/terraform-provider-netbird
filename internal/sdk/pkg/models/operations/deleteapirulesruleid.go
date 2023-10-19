@@ -11,9 +11,30 @@ type DeleteAPIRulesRuleIDSecurity struct {
 	TokenAuth  *string `security:"scheme,type=apiKey,subtype=header,name=Authorization"`
 }
 
+func (o *DeleteAPIRulesRuleIDSecurity) GetBearerAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.BearerAuth
+}
+
+func (o *DeleteAPIRulesRuleIDSecurity) GetTokenAuth() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TokenAuth
+}
+
 type DeleteAPIRulesRuleIDRequest struct {
 	// The unique identifier of a rule
 	RuleID string `pathParam:"style=simple,explode=false,name=ruleId"`
+}
+
+func (o *DeleteAPIRulesRuleIDRequest) GetRuleID() string {
+	if o == nil {
+		return ""
+	}
+	return o.RuleID
 }
 
 type DeleteAPIRulesRuleIDResponse struct {
@@ -23,4 +44,25 @@ type DeleteAPIRulesRuleIDResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+}
+
+func (o *DeleteAPIRulesRuleIDResponse) GetContentType() string {
+	if o == nil {
+		return ""
+	}
+	return o.ContentType
+}
+
+func (o *DeleteAPIRulesRuleIDResponse) GetStatusCode() int {
+	if o == nil {
+		return 0
+	}
+	return o.StatusCode
+}
+
+func (o *DeleteAPIRulesRuleIDResponse) GetRawResponse() *http.Response {
+	if o == nil {
+		return nil
+	}
+	return o.RawResponse
 }

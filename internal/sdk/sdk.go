@@ -3,6 +3,7 @@
 package sdk
 
 import (
+	"context"
 	"fmt"
 	"net/http"
 	"netbird/internal/sdk/pkg/models/shared"
@@ -42,7 +43,7 @@ func Float64(f float64) *float64 { return &f }
 type sdkConfiguration struct {
 	DefaultClient     HTTPClient
 	SecurityClient    HTTPClient
-	Security          *shared.Security
+	Security          func(context.Context) (interface{}, error)
 	ServerURL         string
 	ServerIndex       int
 	Language          string
@@ -50,6 +51,7 @@ type sdkConfiguration struct {
 	SDKVersion        string
 	GenVersion        string
 	UserAgent         string
+	RetryConfig       *utils.RetryConfig
 }
 
 func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
@@ -62,27 +64,27 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 
 // Netbird - NetBird REST API: API to manipulate groups, rules, policies and retrieve information about peers and users
 type Netbird struct {
-	// Accounts - View information about the accounts.
+	// View information about the accounts.
 	Accounts *accounts
-	// DNS - Interact with and view information about DNS configuration.
+	// Interact with and view information about DNS configuration.
 	DNS *dns
-	// Events - View information about the account and network events.
+	// View information about the account and network events.
 	Events *events
-	// Groups - Interact with and view information about groups.
+	// Interact with and view information about groups.
 	Groups *groups
-	// Peers - Interact with and view information about peers.
+	// Interact with and view information about peers.
 	Peers *peers
-	// Policies - Interact with and view information about policies.
+	// Interact with and view information about policies.
 	Policies *policies
-	// Routes - Interact with and view information about routes.
+	// Interact with and view information about routes.
 	Routes *routes
-	// Rules - Interact with and view information about rules.
+	// Interact with and view information about rules.
 	Rules *rules
-	// SetupKeys - Interact with and view information about setup keys.
+	// Interact with and view information about setup keys.
 	SetupKeys *setupKeys
-	// Tokens - Interact with and view information about tokens.
+	// Interact with and view information about tokens.
 	Tokens *tokens
-	// Users - Interact with and view information about users.
+	// Interact with and view information about users.
 	Users *users
 
 	sdkConfiguration sdkConfiguration
@@ -126,10 +128,31 @@ func WithClient(client HTTPClient) SDKOption {
 	}
 }
 
+func withSecurity(security interface{}) func(context.Context) (interface{}, error) {
+	return func(context.Context) (interface{}, error) {
+		return &security, nil
+	}
+}
+
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(security shared.Security) SDKOption {
 	return func(sdk *Netbird) {
-		sdk.sdkConfiguration.Security = &security
+		sdk.sdkConfiguration.Security = withSecurity(security)
+	}
+}
+
+// WithSecuritySource configures the SDK to invoke the Security Source function on each method call to determine authentication
+func WithSecuritySource(security func(context.Context) (shared.Security, error)) SDKOption {
+	return func(sdk *Netbird) {
+		sdk.sdkConfiguration.Security = func(ctx context.Context) (interface{}, error) {
+			return security(ctx)
+		}
+	}
+}
+
+func WithRetryConfig(retryConfig utils.RetryConfig) SDKOption {
+	return func(sdk *Netbird) {
+		sdk.sdkConfiguration.RetryConfig = &retryConfig
 	}
 }
 
@@ -137,11 +160,11 @@ func WithSecurity(security shared.Security) SDKOption {
 func New(opts ...SDKOption) *Netbird {
 	sdk := &Netbird{
 		sdkConfiguration: sdkConfiguration{
-			Language:          "terraform",
+			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "1.19.1",
-			GenVersion:        "2.150.0",
-			UserAgent:         "speakeasy-sdk/terraform 1.19.1 2.150.0 0.0.1 netbird",
+			SDKVersion:        "1.19.2",
+			GenVersion:        "2.161.0",
+			UserAgent:         "speakeasy-sdk/go 1.19.2 2.161.0 0.0.1 netbird",
 		},
 	}
 	for _, opt := range opts {
