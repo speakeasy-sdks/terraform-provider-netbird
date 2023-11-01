@@ -2,23 +2,26 @@ configVersion: 1.0.0
 management:
   docChecksum: e4e58b523ae5ec4c718406d655fc93dd
   docVersion: 0.0.1
-  speakeasyVersion: 1.101.0
-  generationVersion: 2.161.0
+  speakeasyVersion: 1.109.2
+  generationVersion: 2.173.0
 generation:
   comments:
     disableComments: false
     omitDescriptionIfSummaryPresent: false
   baseServerURL: ""
+  repoURL: https://github.com/speakeasy-sdks/terraform-provider-netbird.git
   sdkClassName: netbird
   singleTagPerOp: false
   tagNamespacingDisabled: false
 features:
   terraform:
-    core: 2.92.1
+    core: 2.93.3
     globalSecurity: 2.81.1
     globalServerURLs: 2.82.0
     methodSecurity: 2.82.0
 terraform:
-  version: 1.19.2
+  version: 1.20.0
   author: NetBird
   packageName: netbird
+  published: true
+  repoSubDirectory: .
