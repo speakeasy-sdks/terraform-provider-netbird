@@ -53,6 +53,8 @@ type User struct {
 	IsCurrent *bool `json:"is_current,omitempty"`
 	// Is true if this user is a service user
 	IsServiceUser *bool `json:"is_service_user,omitempty"`
+	// How user was issued by API or Integration
+	Issued *string `json:"issued,omitempty"`
 	// Last time this user performed a login to the dashboard
 	LastLogin *time.Time `json:"last_login,omitempty"`
 	// User's name from idp provider
@@ -114,6 +116,13 @@ func (o *User) GetIsServiceUser() *bool {
 		return nil
 	}
 	return o.IsServiceUser
+}
+
+func (o *User) GetIssued() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Issued
 }
 
 func (o *User) GetLastLogin() *time.Time {
