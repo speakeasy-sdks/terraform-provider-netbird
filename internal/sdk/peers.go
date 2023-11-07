@@ -8,27 +8,27 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"netbird/internal/sdk/pkg/models/operations"
-	"netbird/internal/sdk/pkg/models/sdkerrors"
-	"netbird/internal/sdk/pkg/models/shared"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/models/operations"
+	"netbird/v2/internal/sdk/pkg/models/sdkerrors"
+	"netbird/v2/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"strings"
 )
 
-// peers - Interact with and view information about peers.
-type peers struct {
+// Peers - Interact with and view information about peers.
+type Peers struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPeers(sdkConfig sdkConfiguration) *peers {
-	return &peers{
+func newPeers(sdkConfig sdkConfiguration) *Peers {
+	return &Peers{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // DeleteAPIPeersPeerID - Delete a Peer
 // Delete a peer
-func (s *peers) DeleteAPIPeersPeerID(ctx context.Context, request operations.DeleteAPIPeersPeerIDRequest, security operations.DeleteAPIPeersPeerIDSecurity) (*operations.DeleteAPIPeersPeerIDResponse, error) {
+func (s *Peers) DeleteAPIPeersPeerID(ctx context.Context, request operations.DeleteAPIPeersPeerIDRequest, security operations.DeleteAPIPeersPeerIDSecurity) (*operations.DeleteAPIPeersPeerIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/peers/{peerId}", request, nil)
 	if err != nil {
@@ -83,7 +83,7 @@ func (s *peers) DeleteAPIPeersPeerID(ctx context.Context, request operations.Del
 
 // GetAPIPeers - List all Peers
 // Returns a list of all peers
-func (s *peers) GetAPIPeers(ctx context.Context, security operations.GetAPIPeersSecurity) (*operations.GetAPIPeersResponse, error) {
+func (s *Peers) GetAPIPeers(ctx context.Context, security operations.GetAPIPeersSecurity) (*operations.GetAPIPeersResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/peers"
 
@@ -127,7 +127,7 @@ func (s *peers) GetAPIPeers(ctx context.Context, security operations.GetAPIPeers
 				return nil, err
 			}
 
-			res.Peers = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -145,7 +145,7 @@ func (s *peers) GetAPIPeers(ctx context.Context, security operations.GetAPIPeers
 
 // GetAPIPeersPeerID - Retrieve a Peer
 // Get information about a peer
-func (s *peers) GetAPIPeersPeerID(ctx context.Context, request operations.GetAPIPeersPeerIDRequest, security operations.GetAPIPeersPeerIDSecurity) (*operations.GetAPIPeersPeerIDResponse, error) {
+func (s *Peers) GetAPIPeersPeerID(ctx context.Context, request operations.GetAPIPeersPeerIDRequest, security operations.GetAPIPeersPeerIDSecurity) (*operations.GetAPIPeersPeerIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/peers/{peerId}", request, nil)
 	if err != nil {
@@ -210,7 +210,7 @@ func (s *peers) GetAPIPeersPeerID(ctx context.Context, request operations.GetAPI
 
 // PutAPIPeersPeerID - Update a Peer
 // Update information about a peer
-func (s *peers) PutAPIPeersPeerID(ctx context.Context, request operations.PutAPIPeersPeerIDRequest, security operations.PutAPIPeersPeerIDSecurity) (*operations.PutAPIPeersPeerIDResponse, error) {
+func (s *Peers) PutAPIPeersPeerID(ctx context.Context, request operations.PutAPIPeersPeerIDRequest, security operations.PutAPIPeersPeerIDSecurity) (*operations.PutAPIPeersPeerIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/peers/{peerId}", request, nil)
 	if err != nil {

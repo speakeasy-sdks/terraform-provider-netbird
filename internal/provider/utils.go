@@ -13,7 +13,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
 	"net/http"
 	"net/http/httputil"
-	tfReflect "netbird/internal/provider/reflect"
+	tfReflect "netbird/v2/internal/provider/reflect"
 	"reflect"
 )
 

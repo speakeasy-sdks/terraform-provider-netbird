@@ -8,27 +8,27 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"netbird/internal/sdk/pkg/models/operations"
-	"netbird/internal/sdk/pkg/models/sdkerrors"
-	"netbird/internal/sdk/pkg/models/shared"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/models/operations"
+	"netbird/v2/internal/sdk/pkg/models/sdkerrors"
+	"netbird/v2/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"strings"
 )
 
-// rules - Interact with and view information about rules.
-type rules struct {
+// Rules - Interact with and view information about rules.
+type Rules struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newRules(sdkConfig sdkConfiguration) *rules {
-	return &rules{
+func newRules(sdkConfig sdkConfiguration) *Rules {
+	return &Rules{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // DeleteAPIRulesRuleID - Delete a Rule
 // Delete a rule
-func (s *rules) DeleteAPIRulesRuleID(ctx context.Context, request operations.DeleteAPIRulesRuleIDRequest, security operations.DeleteAPIRulesRuleIDSecurity) (*operations.DeleteAPIRulesRuleIDResponse, error) {
+func (s *Rules) DeleteAPIRulesRuleID(ctx context.Context, request operations.DeleteAPIRulesRuleIDRequest, security operations.DeleteAPIRulesRuleIDSecurity) (*operations.DeleteAPIRulesRuleIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/rules/{ruleId}", request, nil)
 	if err != nil {
@@ -83,7 +83,7 @@ func (s *rules) DeleteAPIRulesRuleID(ctx context.Context, request operations.Del
 
 // GetAPIRules - List all Rules
 // Returns a list of all rules
-func (s *rules) GetAPIRules(ctx context.Context, security operations.GetAPIRulesSecurity) (*operations.GetAPIRulesResponse, error) {
+func (s *Rules) GetAPIRules(ctx context.Context, security operations.GetAPIRulesSecurity) (*operations.GetAPIRulesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/rules"
 
@@ -127,7 +127,7 @@ func (s *rules) GetAPIRules(ctx context.Context, security operations.GetAPIRules
 				return nil, err
 			}
 
-			res.Rules = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -145,7 +145,7 @@ func (s *rules) GetAPIRules(ctx context.Context, security operations.GetAPIRules
 
 // GetAPIRulesRuleID - Retrieve a Rule
 // Get information about a rules
-func (s *rules) GetAPIRulesRuleID(ctx context.Context, request operations.GetAPIRulesRuleIDRequest, security operations.GetAPIRulesRuleIDSecurity) (*operations.GetAPIRulesRuleIDResponse, error) {
+func (s *Rules) GetAPIRulesRuleID(ctx context.Context, request operations.GetAPIRulesRuleIDRequest, security operations.GetAPIRulesRuleIDSecurity) (*operations.GetAPIRulesRuleIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/rules/{ruleId}", request, nil)
 	if err != nil {
@@ -210,7 +210,7 @@ func (s *rules) GetAPIRulesRuleID(ctx context.Context, request operations.GetAPI
 
 // PostAPIRules - Create a Rule
 // Creates a rule
-func (s *rules) PostAPIRules(ctx context.Context, request *shared.RuleRequest, security operations.PostAPIRulesSecurity) (*operations.PostAPIRulesResponse, error) {
+func (s *Rules) PostAPIRules(ctx context.Context, request *shared.RuleRequest, security operations.PostAPIRulesSecurity) (*operations.PostAPIRulesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/rules"
 
@@ -275,7 +275,7 @@ func (s *rules) PostAPIRules(ctx context.Context, request *shared.RuleRequest, s
 
 // PutAPIRulesRuleID - Update a Rule
 // Update/Replace a rule
-func (s *rules) PutAPIRulesRuleID(ctx context.Context, request operations.PutAPIRulesRuleIDRequest, security operations.PutAPIRulesRuleIDSecurity) (*operations.PutAPIRulesRuleIDResponse, error) {
+func (s *Rules) PutAPIRulesRuleID(ctx context.Context, request operations.PutAPIRulesRuleIDRequest, security operations.PutAPIRulesRuleIDSecurity) (*operations.PutAPIRulesRuleIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/rules/{ruleId}", request, nil)
 	if err != nil {

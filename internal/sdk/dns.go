@@ -8,27 +8,27 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"netbird/internal/sdk/pkg/models/operations"
-	"netbird/internal/sdk/pkg/models/sdkerrors"
-	"netbird/internal/sdk/pkg/models/shared"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/models/operations"
+	"netbird/v2/internal/sdk/pkg/models/sdkerrors"
+	"netbird/v2/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"strings"
 )
 
-// dns - Interact with and view information about DNS configuration.
-type dns struct {
+// DNS - Interact with and view information about DNS configuration.
+type DNS struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newDNS(sdkConfig sdkConfiguration) *dns {
-	return &dns{
+func newDNS(sdkConfig sdkConfiguration) *DNS {
+	return &DNS{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // DeleteAPIDNSNameserversNsgroupID - Delete a Nameserver Group
 // Delete a Nameserver Group
-func (s *dns) DeleteAPIDNSNameserversNsgroupID(ctx context.Context, request operations.DeleteAPIDNSNameserversNsgroupIDRequest, security operations.DeleteAPIDNSNameserversNsgroupIDSecurity) (*operations.DeleteAPIDNSNameserversNsgroupIDResponse, error) {
+func (s *DNS) DeleteAPIDNSNameserversNsgroupID(ctx context.Context, request operations.DeleteAPIDNSNameserversNsgroupIDRequest, security operations.DeleteAPIDNSNameserversNsgroupIDSecurity) (*operations.DeleteAPIDNSNameserversNsgroupIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/dns/nameservers/{nsgroupId}", request, nil)
 	if err != nil {
@@ -83,7 +83,7 @@ func (s *dns) DeleteAPIDNSNameserversNsgroupID(ctx context.Context, request oper
 
 // GetAPIDNSNameservers - List all Nameserver Groups
 // Returns a list of all Nameserver Groups
-func (s *dns) GetAPIDNSNameservers(ctx context.Context, security operations.GetAPIDNSNameserversSecurity) (*operations.GetAPIDNSNameserversResponse, error) {
+func (s *DNS) GetAPIDNSNameservers(ctx context.Context, security operations.GetAPIDNSNameserversSecurity) (*operations.GetAPIDNSNameserversResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/dns/nameservers"
 
@@ -127,7 +127,7 @@ func (s *dns) GetAPIDNSNameservers(ctx context.Context, security operations.GetA
 				return nil, err
 			}
 
-			res.NameserverGroups = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -145,7 +145,7 @@ func (s *dns) GetAPIDNSNameservers(ctx context.Context, security operations.GetA
 
 // GetAPIDNSNameserversNsgroupID - Retrieve a Nameserver Group
 // Get information about a Nameserver Groups
-func (s *dns) GetAPIDNSNameserversNsgroupID(ctx context.Context, request operations.GetAPIDNSNameserversNsgroupIDRequest, security operations.GetAPIDNSNameserversNsgroupIDSecurity) (*operations.GetAPIDNSNameserversNsgroupIDResponse, error) {
+func (s *DNS) GetAPIDNSNameserversNsgroupID(ctx context.Context, request operations.GetAPIDNSNameserversNsgroupIDRequest, security operations.GetAPIDNSNameserversNsgroupIDSecurity) (*operations.GetAPIDNSNameserversNsgroupIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/dns/nameservers/{nsgroupId}", request, nil)
 	if err != nil {
@@ -210,7 +210,7 @@ func (s *dns) GetAPIDNSNameserversNsgroupID(ctx context.Context, request operati
 
 // GetAPIDNSSettings - Retrieve DNS settings
 // Returns a DNS settings object
-func (s *dns) GetAPIDNSSettings(ctx context.Context, security operations.GetAPIDNSSettingsSecurity) (*operations.GetAPIDNSSettingsResponse, error) {
+func (s *DNS) GetAPIDNSSettings(ctx context.Context, security operations.GetAPIDNSSettingsSecurity) (*operations.GetAPIDNSSettingsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/dns/settings"
 
@@ -254,7 +254,7 @@ func (s *dns) GetAPIDNSSettings(ctx context.Context, security operations.GetAPID
 				return nil, err
 			}
 
-			res.DNSSettings = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -272,7 +272,7 @@ func (s *dns) GetAPIDNSSettings(ctx context.Context, security operations.GetAPID
 
 // PostAPIDNSNameservers - Create a Nameserver Group
 // Creates a Nameserver Group
-func (s *dns) PostAPIDNSNameservers(ctx context.Context, request *shared.NameserverGroupRequest, security operations.PostAPIDNSNameserversSecurity) (*operations.PostAPIDNSNameserversResponse, error) {
+func (s *DNS) PostAPIDNSNameservers(ctx context.Context, request *shared.NameserverGroupRequest, security operations.PostAPIDNSNameserversSecurity) (*operations.PostAPIDNSNameserversResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/dns/nameservers"
 
@@ -344,7 +344,7 @@ func (s *dns) PostAPIDNSNameservers(ctx context.Context, request *shared.Nameser
 
 // PutAPIDNSNameserversNsgroupID - Update a Nameserver Group
 // Update/Replace a Nameserver Group
-func (s *dns) PutAPIDNSNameserversNsgroupID(ctx context.Context, request operations.PutAPIDNSNameserversNsgroupIDRequest, security operations.PutAPIDNSNameserversNsgroupIDSecurity) (*operations.PutAPIDNSNameserversNsgroupIDResponse, error) {
+func (s *DNS) PutAPIDNSNameserversNsgroupID(ctx context.Context, request operations.PutAPIDNSNameserversNsgroupIDRequest, security operations.PutAPIDNSNameserversNsgroupIDSecurity) (*operations.PutAPIDNSNameserversNsgroupIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/dns/nameservers/{nsgroupId}", request, nil)
 	if err != nil {
@@ -419,7 +419,7 @@ func (s *dns) PutAPIDNSNameserversNsgroupID(ctx context.Context, request operati
 
 // PutAPIDNSSettings - Update DNS Settings
 // Updates a DNS settings object
-func (s *dns) PutAPIDNSSettings(ctx context.Context, request *shared.DNSSettings, security operations.PutAPIDNSSettingsSecurity) (*operations.PutAPIDNSSettingsResponse, error) {
+func (s *DNS) PutAPIDNSSettings(ctx context.Context, request *shared.DNSSettings, security operations.PutAPIDNSSettingsSecurity) (*operations.PutAPIDNSSettingsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/dns/settings"
 

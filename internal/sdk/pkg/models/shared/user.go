@@ -5,24 +5,24 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"time"
 )
 
-// UserStatus - User's status
-type UserStatus string
+// Status - User's status
+type Status string
 
 const (
-	UserStatusActive  UserStatus = "active"
-	UserStatusInvited UserStatus = "invited"
-	UserStatusBlocked UserStatus = "blocked"
+	StatusActive  Status = "active"
+	StatusInvited Status = "invited"
+	StatusBlocked Status = "blocked"
 )
 
-func (e UserStatus) ToPointer() *UserStatus {
+func (e Status) ToPointer() *Status {
 	return &e
 }
 
-func (e *UserStatus) UnmarshalJSON(data []byte) error {
+func (e *Status) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -33,10 +33,10 @@ func (e *UserStatus) UnmarshalJSON(data []byte) error {
 	case "invited":
 		fallthrough
 	case "blocked":
-		*e = UserStatus(v)
+		*e = Status(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for UserStatus: %v", v)
+		return fmt.Errorf("invalid value for Status: %v", v)
 	}
 }
 
@@ -62,7 +62,7 @@ type User struct {
 	// User's NetBird account role
 	Role string `json:"role"`
 	// User's status
-	Status UserStatus `json:"status"`
+	Status Status `json:"status"`
 }
 
 func (u User) MarshalJSON() ([]byte, error) {
@@ -146,9 +146,9 @@ func (o *User) GetRole() string {
 	return o.Role
 }
 
-func (o *User) GetStatus() UserStatus {
+func (o *User) GetStatus() Status {
 	if o == nil {
-		return UserStatus("")
+		return Status("")
 	}
 	return o.Status
 }

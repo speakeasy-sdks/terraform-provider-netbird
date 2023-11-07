@@ -8,26 +8,26 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"netbird/internal/sdk/pkg/models/operations"
-	"netbird/internal/sdk/pkg/models/sdkerrors"
-	"netbird/internal/sdk/pkg/models/shared"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/models/operations"
+	"netbird/v2/internal/sdk/pkg/models/sdkerrors"
+	"netbird/v2/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/utils"
 )
 
-// tokens - Interact with and view information about tokens.
-type tokens struct {
+// Tokens - Interact with and view information about tokens.
+type Tokens struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newTokens(sdkConfig sdkConfiguration) *tokens {
-	return &tokens{
+func newTokens(sdkConfig sdkConfiguration) *Tokens {
+	return &Tokens{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // DeleteAPIUsersUserIDTokensTokenID - Delete a Token
 // Delete a token for a user
-func (s *tokens) DeleteAPIUsersUserIDTokensTokenID(ctx context.Context, request operations.DeleteAPIUsersUserIDTokensTokenIDRequest, security operations.DeleteAPIUsersUserIDTokensTokenIDSecurity) (*operations.DeleteAPIUsersUserIDTokensTokenIDResponse, error) {
+func (s *Tokens) DeleteAPIUsersUserIDTokensTokenID(ctx context.Context, request operations.DeleteAPIUsersUserIDTokensTokenIDRequest, security operations.DeleteAPIUsersUserIDTokensTokenIDSecurity) (*operations.DeleteAPIUsersUserIDTokensTokenIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/users/{userId}/tokens/{tokenId}", request, nil)
 	if err != nil {
@@ -82,7 +82,7 @@ func (s *tokens) DeleteAPIUsersUserIDTokensTokenID(ctx context.Context, request 
 
 // GetAPIUsersUserIDTokens - List all Tokens
 // Returns a list of all tokens for a user
-func (s *tokens) GetAPIUsersUserIDTokens(ctx context.Context, request operations.GetAPIUsersUserIDTokensRequest, security operations.GetAPIUsersUserIDTokensSecurity) (*operations.GetAPIUsersUserIDTokensResponse, error) {
+func (s *Tokens) GetAPIUsersUserIDTokens(ctx context.Context, request operations.GetAPIUsersUserIDTokensRequest, security operations.GetAPIUsersUserIDTokensSecurity) (*operations.GetAPIUsersUserIDTokensResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/users/{userId}/tokens", request, nil)
 	if err != nil {
@@ -129,7 +129,7 @@ func (s *tokens) GetAPIUsersUserIDTokens(ctx context.Context, request operations
 				return nil, err
 			}
 
-			res.PersonalAccessTokens = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -147,7 +147,7 @@ func (s *tokens) GetAPIUsersUserIDTokens(ctx context.Context, request operations
 
 // GetAPIUsersUserIDTokensTokenID - Retrieve a Token
 // Returns a specific token for a user
-func (s *tokens) GetAPIUsersUserIDTokensTokenID(ctx context.Context, request operations.GetAPIUsersUserIDTokensTokenIDRequest, security operations.GetAPIUsersUserIDTokensTokenIDSecurity) (*operations.GetAPIUsersUserIDTokensTokenIDResponse, error) {
+func (s *Tokens) GetAPIUsersUserIDTokensTokenID(ctx context.Context, request operations.GetAPIUsersUserIDTokensTokenIDRequest, security operations.GetAPIUsersUserIDTokensTokenIDSecurity) (*operations.GetAPIUsersUserIDTokensTokenIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/users/{userId}/tokens/{tokenId}", request, nil)
 	if err != nil {
@@ -212,7 +212,7 @@ func (s *tokens) GetAPIUsersUserIDTokensTokenID(ctx context.Context, request ope
 
 // PostAPIUsersUserIDTokens - Create a Token
 // Create a new token for a user
-func (s *tokens) PostAPIUsersUserIDTokens(ctx context.Context, request operations.PostAPIUsersUserIDTokensRequest, security operations.PostAPIUsersUserIDTokensSecurity) (*operations.PostAPIUsersUserIDTokensResponse, error) {
+func (s *Tokens) PostAPIUsersUserIDTokens(ctx context.Context, request operations.PostAPIUsersUserIDTokensRequest, security operations.PostAPIUsersUserIDTokensSecurity) (*operations.PostAPIUsersUserIDTokensResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/users/{userId}/tokens", request, nil)
 	if err != nil {

@@ -4,7 +4,7 @@ package operations
 
 import (
 	"net/http"
-	"netbird/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/models/shared"
 )
 
 type GetAPIDNSNameserversSecurity struct {
@@ -29,12 +29,12 @@ func (o *GetAPIDNSNameserversSecurity) GetTokenAuth() *string {
 type GetAPIDNSNameserversResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// A JSON Array of Nameserver Groups
-	NameserverGroups []shared.NameserverGroup
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// A JSON Array of Nameserver Groups
+	Classes []shared.NameserverGroup
 }
 
 func (o *GetAPIDNSNameserversResponse) GetContentType() string {
@@ -42,13 +42,6 @@ func (o *GetAPIDNSNameserversResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetAPIDNSNameserversResponse) GetNameserverGroups() []shared.NameserverGroup {
-	if o == nil {
-		return nil
-	}
-	return o.NameserverGroups
 }
 
 func (o *GetAPIDNSNameserversResponse) GetStatusCode() int {
@@ -63,4 +56,11 @@ func (o *GetAPIDNSNameserversResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetAPIDNSNameserversResponse) GetClasses() []shared.NameserverGroup {
+	if o == nil {
+		return nil
+	}
+	return o.Classes
 }

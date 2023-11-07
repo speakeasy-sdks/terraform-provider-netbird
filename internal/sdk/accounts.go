@@ -8,27 +8,27 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"netbird/internal/sdk/pkg/models/operations"
-	"netbird/internal/sdk/pkg/models/sdkerrors"
-	"netbird/internal/sdk/pkg/models/shared"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/models/operations"
+	"netbird/v2/internal/sdk/pkg/models/sdkerrors"
+	"netbird/v2/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"strings"
 )
 
-// accounts - View information about the accounts.
-type accounts struct {
+// Accounts - View information about the accounts.
+type Accounts struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newAccounts(sdkConfig sdkConfiguration) *accounts {
-	return &accounts{
+func newAccounts(sdkConfig sdkConfiguration) *Accounts {
+	return &Accounts{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAPIAccounts - List all Accounts
 // Returns a list of accounts of a user. Always returns a list of one account.
-func (s *accounts) GetAPIAccounts(ctx context.Context, security operations.GetAPIAccountsSecurity) (*operations.GetAPIAccountsResponse, error) {
+func (s *Accounts) GetAPIAccounts(ctx context.Context, security operations.GetAPIAccountsSecurity) (*operations.GetAPIAccountsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/accounts"
 
@@ -72,7 +72,7 @@ func (s *accounts) GetAPIAccounts(ctx context.Context, security operations.GetAP
 				return nil, err
 			}
 
-			res.Accounts = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -90,7 +90,7 @@ func (s *accounts) GetAPIAccounts(ctx context.Context, security operations.GetAP
 
 // PutAPIAccountsAccountID - Update an Account
 // Update information about an account
-func (s *accounts) PutAPIAccountsAccountID(ctx context.Context, request operations.PutAPIAccountsAccountIDRequest, security operations.PutAPIAccountsAccountIDSecurity) (*operations.PutAPIAccountsAccountIDResponse, error) {
+func (s *Accounts) PutAPIAccountsAccountID(ctx context.Context, request operations.PutAPIAccountsAccountIDRequest, security operations.PutAPIAccountsAccountIDSecurity) (*operations.PutAPIAccountsAccountIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/accounts/{accountId}", request, nil)
 	if err != nil {

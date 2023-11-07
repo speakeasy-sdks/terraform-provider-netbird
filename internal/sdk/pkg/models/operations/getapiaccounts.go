@@ -4,7 +4,7 @@ package operations
 
 import (
 	"net/http"
-	"netbird/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/models/shared"
 )
 
 type GetAPIAccountsSecurity struct {
@@ -27,21 +27,14 @@ func (o *GetAPIAccountsSecurity) GetTokenAuth() *string {
 }
 
 type GetAPIAccountsResponse struct {
-	// A JSON array of accounts
-	Accounts []shared.Account
 	// HTTP response content type for this operation
 	ContentType string
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
-}
-
-func (o *GetAPIAccountsResponse) GetAccounts() []shared.Account {
-	if o == nil {
-		return nil
-	}
-	return o.Accounts
+	// A JSON array of accounts
+	Classes []shared.Account
 }
 
 func (o *GetAPIAccountsResponse) GetContentType() string {
@@ -63,4 +56,11 @@ func (o *GetAPIAccountsResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetAPIAccountsResponse) GetClasses() []shared.Account {
+	if o == nil {
+		return nil
+	}
+	return o.Classes
 }

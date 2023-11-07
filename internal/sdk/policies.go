@@ -8,27 +8,27 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"netbird/internal/sdk/pkg/models/operations"
-	"netbird/internal/sdk/pkg/models/sdkerrors"
-	"netbird/internal/sdk/pkg/models/shared"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/models/operations"
+	"netbird/v2/internal/sdk/pkg/models/sdkerrors"
+	"netbird/v2/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"strings"
 )
 
-// policies - Interact with and view information about policies.
-type policies struct {
+// Policies - Interact with and view information about policies.
+type Policies struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newPolicies(sdkConfig sdkConfiguration) *policies {
-	return &policies{
+func newPolicies(sdkConfig sdkConfiguration) *Policies {
+	return &Policies{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // DeleteAPIPoliciesPolicyID - Delete a Policy
 // Delete a policy
-func (s *policies) DeleteAPIPoliciesPolicyID(ctx context.Context, request operations.DeleteAPIPoliciesPolicyIDRequest, security operations.DeleteAPIPoliciesPolicyIDSecurity) (*operations.DeleteAPIPoliciesPolicyIDResponse, error) {
+func (s *Policies) DeleteAPIPoliciesPolicyID(ctx context.Context, request operations.DeleteAPIPoliciesPolicyIDRequest, security operations.DeleteAPIPoliciesPolicyIDSecurity) (*operations.DeleteAPIPoliciesPolicyIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/policies/{policyId}", request, nil)
 	if err != nil {
@@ -83,7 +83,7 @@ func (s *policies) DeleteAPIPoliciesPolicyID(ctx context.Context, request operat
 
 // GetAPIPolicies - List all Policies
 // Returns a list of all policies
-func (s *policies) GetAPIPolicies(ctx context.Context, security operations.GetAPIPoliciesSecurity) (*operations.GetAPIPoliciesResponse, error) {
+func (s *Policies) GetAPIPolicies(ctx context.Context, security operations.GetAPIPoliciesSecurity) (*operations.GetAPIPoliciesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/policies"
 
@@ -127,7 +127,7 @@ func (s *policies) GetAPIPolicies(ctx context.Context, security operations.GetAP
 				return nil, err
 			}
 
-			res.Policies = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -145,7 +145,7 @@ func (s *policies) GetAPIPolicies(ctx context.Context, security operations.GetAP
 
 // GetAPIPoliciesPolicyID - Retrieve a Policy
 // Get information about a Policies
-func (s *policies) GetAPIPoliciesPolicyID(ctx context.Context, request operations.GetAPIPoliciesPolicyIDRequest, security operations.GetAPIPoliciesPolicyIDSecurity) (*operations.GetAPIPoliciesPolicyIDResponse, error) {
+func (s *Policies) GetAPIPoliciesPolicyID(ctx context.Context, request operations.GetAPIPoliciesPolicyIDRequest, security operations.GetAPIPoliciesPolicyIDSecurity) (*operations.GetAPIPoliciesPolicyIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/policies/{policyId}", request, nil)
 	if err != nil {
@@ -210,7 +210,7 @@ func (s *policies) GetAPIPoliciesPolicyID(ctx context.Context, request operation
 
 // PostAPIPolicies - Create a Policy
 // Creates a policy
-func (s *policies) PostAPIPolicies(ctx context.Context, request *shared.PolicyUpdate, security operations.PostAPIPoliciesSecurity) (*operations.PostAPIPoliciesResponse, error) {
+func (s *Policies) PostAPIPolicies(ctx context.Context, request *shared.PolicyUpdate, security operations.PostAPIPoliciesSecurity) (*operations.PostAPIPoliciesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/policies"
 
@@ -275,7 +275,7 @@ func (s *policies) PostAPIPolicies(ctx context.Context, request *shared.PolicyUp
 
 // PutAPIPoliciesPolicyID - Update a Policy
 // Update/Replace a Policy
-func (s *policies) PutAPIPoliciesPolicyID(ctx context.Context, request operations.PutAPIPoliciesPolicyIDRequest, security operations.PutAPIPoliciesPolicyIDSecurity) (*operations.PutAPIPoliciesPolicyIDResponse, error) {
+func (s *Policies) PutAPIPoliciesPolicyID(ctx context.Context, request operations.PutAPIPoliciesPolicyIDRequest, security operations.PutAPIPoliciesPolicyIDSecurity) (*operations.PutAPIPoliciesPolicyIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/policies/{policyId}", request, nil)
 	if err != nil {

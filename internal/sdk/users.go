@@ -8,27 +8,27 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"netbird/internal/sdk/pkg/models/operations"
-	"netbird/internal/sdk/pkg/models/sdkerrors"
-	"netbird/internal/sdk/pkg/models/shared"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/models/operations"
+	"netbird/v2/internal/sdk/pkg/models/sdkerrors"
+	"netbird/v2/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"strings"
 )
 
-// users - Interact with and view information about users.
-type users struct {
+// Users - Interact with and view information about users.
+type Users struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newUsers(sdkConfig sdkConfiguration) *users {
-	return &users{
+func newUsers(sdkConfig sdkConfiguration) *Users {
+	return &Users{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // DeleteAPIUsersUserID - Delete a User
 // This method removes a user from accessing the system. For this leaves the IDP user intact unless the `--user-delete-from-idp` is passed to management startup.
-func (s *users) DeleteAPIUsersUserID(ctx context.Context, request operations.DeleteAPIUsersUserIDRequest, security operations.DeleteAPIUsersUserIDSecurity) (*operations.DeleteAPIUsersUserIDResponse, error) {
+func (s *Users) DeleteAPIUsersUserID(ctx context.Context, request operations.DeleteAPIUsersUserIDRequest, security operations.DeleteAPIUsersUserIDSecurity) (*operations.DeleteAPIUsersUserIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/users/{userId}", request, nil)
 	if err != nil {
@@ -83,7 +83,7 @@ func (s *users) DeleteAPIUsersUserID(ctx context.Context, request operations.Del
 
 // GetAPIUsers - List all Users
 // Returns a list of all users
-func (s *users) GetAPIUsers(ctx context.Context, request operations.GetAPIUsersRequest, security operations.GetAPIUsersSecurity) (*operations.GetAPIUsersResponse, error) {
+func (s *Users) GetAPIUsers(ctx context.Context, request operations.GetAPIUsersRequest, security operations.GetAPIUsersSecurity) (*operations.GetAPIUsersResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/users"
 
@@ -131,7 +131,7 @@ func (s *users) GetAPIUsers(ctx context.Context, request operations.GetAPIUsersR
 				return nil, err
 			}
 
-			res.Users = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -149,7 +149,7 @@ func (s *users) GetAPIUsers(ctx context.Context, request operations.GetAPIUsersR
 
 // PostAPIUsers - Create a User
 // Creates a new service user or sends an invite to a regular user
-func (s *users) PostAPIUsers(ctx context.Context, request *shared.UserCreateRequest, security operations.PostAPIUsersSecurity) (*operations.PostAPIUsersResponse, error) {
+func (s *Users) PostAPIUsers(ctx context.Context, request *shared.UserCreateRequest, security operations.PostAPIUsersSecurity) (*operations.PostAPIUsersResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/users"
 
@@ -221,7 +221,7 @@ func (s *users) PostAPIUsers(ctx context.Context, request *shared.UserCreateRequ
 
 // PostAPIUsersUserIDInvite - Resend user invitation
 // Resend user invitation
-func (s *users) PostAPIUsersUserIDInvite(ctx context.Context, request operations.PostAPIUsersUserIDInviteRequest, security operations.PostAPIUsersUserIDInviteSecurity) (*operations.PostAPIUsersUserIDInviteResponse, error) {
+func (s *Users) PostAPIUsersUserIDInvite(ctx context.Context, request operations.PostAPIUsersUserIDInviteRequest, security operations.PostAPIUsersUserIDInviteSecurity) (*operations.PostAPIUsersUserIDInviteResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/users/{userId}/invite", request, nil)
 	if err != nil {
@@ -276,7 +276,7 @@ func (s *users) PostAPIUsersUserIDInvite(ctx context.Context, request operations
 
 // PutAPIUsersUserID - Update a User
 // Update information about a User
-func (s *users) PutAPIUsersUserID(ctx context.Context, request operations.PutAPIUsersUserIDRequest, security operations.PutAPIUsersUserIDSecurity) (*operations.PutAPIUsersUserIDResponse, error) {
+func (s *Users) PutAPIUsersUserID(ctx context.Context, request operations.PutAPIUsersUserIDRequest, security operations.PutAPIUsersUserIDSecurity) (*operations.PutAPIUsersUserIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/users/{userId}", request, nil)
 	if err != nil {

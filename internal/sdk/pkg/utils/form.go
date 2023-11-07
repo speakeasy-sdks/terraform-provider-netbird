@@ -12,7 +12,7 @@ import (
 
 	"github.com/ericlagergren/decimal"
 
-	"netbird/internal/sdk/pkg/types"
+	"netbird/v2/internal/sdk/pkg/types"
 )
 
 func populateForm(paramName string, explode bool, objType reflect.Type, objValue reflect.Value, delimiter string, getFieldName func(reflect.StructField) string) url.Values {

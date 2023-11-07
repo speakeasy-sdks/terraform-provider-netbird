@@ -7,28 +7,28 @@ import (
 	"fmt"
 )
 
-// NameserverNsType - Nameserver Type
-type NameserverNsType string
+// NsType - Nameserver Type
+type NsType string
 
 const (
-	NameserverNsTypeUDP NameserverNsType = "udp"
+	NsTypeUDP NsType = "udp"
 )
 
-func (e NameserverNsType) ToPointer() *NameserverNsType {
+func (e NsType) ToPointer() *NsType {
 	return &e
 }
 
-func (e *NameserverNsType) UnmarshalJSON(data []byte) error {
+func (e *NsType) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
 	}
 	switch v {
 	case "udp":
-		*e = NameserverNsType(v)
+		*e = NsType(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for NameserverNsType: %v", v)
+		return fmt.Errorf("invalid value for NsType: %v", v)
 	}
 }
 
@@ -36,7 +36,7 @@ type Nameserver struct {
 	// Nameserver IP
 	IP string `json:"ip"`
 	// Nameserver Type
-	NsType NameserverNsType `json:"ns_type"`
+	NsType NsType `json:"ns_type"`
 	// Nameserver Port
 	Port int64 `json:"port"`
 }
@@ -48,9 +48,9 @@ func (o *Nameserver) GetIP() string {
 	return o.IP
 }
 
-func (o *Nameserver) GetNsType() NameserverNsType {
+func (o *Nameserver) GetNsType() NsType {
 	if o == nil {
-		return NameserverNsType("")
+		return NsType("")
 	}
 	return o.NsType
 }

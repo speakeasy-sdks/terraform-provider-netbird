@@ -4,7 +4,7 @@ package operations
 
 import (
 	"net/http"
-	"netbird/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/models/shared"
 )
 
 type GetAPIPoliciesSecurity struct {
@@ -29,12 +29,12 @@ func (o *GetAPIPoliciesSecurity) GetTokenAuth() *string {
 type GetAPIPoliciesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// A JSON Array of Policies
-	Policies []shared.Policy
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// A JSON Array of Policies
+	Classes []shared.Policy
 }
 
 func (o *GetAPIPoliciesResponse) GetContentType() string {
@@ -42,13 +42,6 @@ func (o *GetAPIPoliciesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetAPIPoliciesResponse) GetPolicies() []shared.Policy {
-	if o == nil {
-		return nil
-	}
-	return o.Policies
 }
 
 func (o *GetAPIPoliciesResponse) GetStatusCode() int {
@@ -63,4 +56,11 @@ func (o *GetAPIPoliciesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetAPIPoliciesResponse) GetClasses() []shared.Policy {
+	if o == nil {
+		return nil
+	}
+	return o.Classes
 }

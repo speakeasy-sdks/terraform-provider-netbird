@@ -4,7 +4,7 @@ package operations
 
 import (
 	"net/http"
-	"netbird/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/models/shared"
 )
 
 type GetAPIUsersUserIDTokensSecurity struct {
@@ -41,12 +41,12 @@ func (o *GetAPIUsersUserIDTokensRequest) GetUserID() string {
 type GetAPIUsersUserIDTokensResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// A JSON Array of PersonalAccessTokens
-	PersonalAccessTokens []shared.PersonalAccessToken
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// A JSON Array of PersonalAccessTokens
+	Classes []shared.PersonalAccessToken
 }
 
 func (o *GetAPIUsersUserIDTokensResponse) GetContentType() string {
@@ -54,13 +54,6 @@ func (o *GetAPIUsersUserIDTokensResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetAPIUsersUserIDTokensResponse) GetPersonalAccessTokens() []shared.PersonalAccessToken {
-	if o == nil {
-		return nil
-	}
-	return o.PersonalAccessTokens
 }
 
 func (o *GetAPIUsersUserIDTokensResponse) GetStatusCode() int {
@@ -75,4 +68,11 @@ func (o *GetAPIUsersUserIDTokensResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetAPIUsersUserIDTokensResponse) GetClasses() []shared.PersonalAccessToken {
+	if o == nil {
+		return nil
+	}
+	return o.Classes
 }

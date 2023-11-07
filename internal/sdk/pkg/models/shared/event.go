@@ -5,68 +5,68 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"time"
 )
 
-// EventActivityCode - The string code of the activity that occurred during the event
-type EventActivityCode string
+// ActivityCode - The string code of the activity that occurred during the event
+type ActivityCode string
 
 const (
-	EventActivityCodeUserPeerDelete                           EventActivityCode = "user.peer.delete"
-	EventActivityCodeUserJoin                                 EventActivityCode = "user.join"
-	EventActivityCodeUserInvite                               EventActivityCode = "user.invite"
-	EventActivityCodeUserPeerAdd                              EventActivityCode = "user.peer.add"
-	EventActivityCodeUserGroupAdd                             EventActivityCode = "user.group.add"
-	EventActivityCodeUserGroupDelete                          EventActivityCode = "user.group.delete"
-	EventActivityCodeUserRoleUpdate                           EventActivityCode = "user.role.update"
-	EventActivityCodeUserBlock                                EventActivityCode = "user.block"
-	EventActivityCodeUserUnblock                              EventActivityCode = "user.unblock"
-	EventActivityCodeUserPeerLogin                            EventActivityCode = "user.peer.login"
-	EventActivityCodeSetupkeyPeerAdd                          EventActivityCode = "setupkey.peer.add"
-	EventActivityCodeSetupkeyAdd                              EventActivityCode = "setupkey.add"
-	EventActivityCodeSetupkeyUpdate                           EventActivityCode = "setupkey.update"
-	EventActivityCodeSetupkeyRevoke                           EventActivityCode = "setupkey.revoke"
-	EventActivityCodeSetupkeyOveruse                          EventActivityCode = "setupkey.overuse"
-	EventActivityCodeSetupkeyGroupDelete                      EventActivityCode = "setupkey.group.delete"
-	EventActivityCodeSetupkeyGroupAdd                         EventActivityCode = "setupkey.group.add"
-	EventActivityCodeRuleAdd                                  EventActivityCode = "rule.add"
-	EventActivityCodeRuleDelete                               EventActivityCode = "rule.delete"
-	EventActivityCodeRuleUpdate                               EventActivityCode = "rule.update"
-	EventActivityCodePolicyAdd                                EventActivityCode = "policy.add"
-	EventActivityCodePolicyDelete                             EventActivityCode = "policy.delete"
-	EventActivityCodePolicyUpdate                             EventActivityCode = "policy.update"
-	EventActivityCodeGroupAdd                                 EventActivityCode = "group.add"
-	EventActivityCodeGroupUpdate                              EventActivityCode = "group.update"
-	EventActivityCodeDNSSettingDisabledManagementGroupAdd     EventActivityCode = "dns.setting.disabled.management.group.add"
-	EventActivityCodeDNSSettingDisabledManagementGroupDelete  EventActivityCode = "dns.setting.disabled.management.group.delete"
-	EventActivityCodeAccountCreate                            EventActivityCode = "account.create"
-	EventActivityCodeAccountSettingPeerLoginExpirationUpdate  EventActivityCode = "account.setting.peer.login.expiration.update"
-	EventActivityCodeAccountSettingPeerLoginExpirationDisable EventActivityCode = "account.setting.peer.login.expiration.disable"
-	EventActivityCodeAccountSettingPeerLoginExpirationEnable  EventActivityCode = "account.setting.peer.login.expiration.enable"
-	EventActivityCodeRouteAdd                                 EventActivityCode = "route.add"
-	EventActivityCodeRouteDelete                              EventActivityCode = "route.delete"
-	EventActivityCodeRouteUpdate                              EventActivityCode = "route.update"
-	EventActivityCodeNameserverGroupAdd                       EventActivityCode = "nameserver.group.add"
-	EventActivityCodeNameserverGroupDelete                    EventActivityCode = "nameserver.group.delete"
-	EventActivityCodeNameserverGroupUpdate                    EventActivityCode = "nameserver.group.update"
-	EventActivityCodePeerSSHDisable                           EventActivityCode = "peer.ssh.disable"
-	EventActivityCodePeerSSHEnable                            EventActivityCode = "peer.ssh.enable"
-	EventActivityCodePeerRename                               EventActivityCode = "peer.rename"
-	EventActivityCodePeerLoginExpirationDisable               EventActivityCode = "peer.login.expiration.disable"
-	EventActivityCodePeerLoginExpirationEnable                EventActivityCode = "peer.login.expiration.enable"
-	EventActivityCodePeerLoginExpire                          EventActivityCode = "peer.login.expire"
-	EventActivityCodeServiceUserCreate                        EventActivityCode = "service.user.create"
-	EventActivityCodePersonalAccessTokenCreate                EventActivityCode = "personal.access.token.create"
-	EventActivityCodeServiceUserDelete                        EventActivityCode = "service.user.delete"
-	EventActivityCodePersonalAccessTokenDelete                EventActivityCode = "personal.access.token.delete"
+	ActivityCodeUserPeerDelete                           ActivityCode = "user.peer.delete"
+	ActivityCodeUserJoin                                 ActivityCode = "user.join"
+	ActivityCodeUserInvite                               ActivityCode = "user.invite"
+	ActivityCodeUserPeerAdd                              ActivityCode = "user.peer.add"
+	ActivityCodeUserGroupAdd                             ActivityCode = "user.group.add"
+	ActivityCodeUserGroupDelete                          ActivityCode = "user.group.delete"
+	ActivityCodeUserRoleUpdate                           ActivityCode = "user.role.update"
+	ActivityCodeUserBlock                                ActivityCode = "user.block"
+	ActivityCodeUserUnblock                              ActivityCode = "user.unblock"
+	ActivityCodeUserPeerLogin                            ActivityCode = "user.peer.login"
+	ActivityCodeSetupkeyPeerAdd                          ActivityCode = "setupkey.peer.add"
+	ActivityCodeSetupkeyAdd                              ActivityCode = "setupkey.add"
+	ActivityCodeSetupkeyUpdate                           ActivityCode = "setupkey.update"
+	ActivityCodeSetupkeyRevoke                           ActivityCode = "setupkey.revoke"
+	ActivityCodeSetupkeyOveruse                          ActivityCode = "setupkey.overuse"
+	ActivityCodeSetupkeyGroupDelete                      ActivityCode = "setupkey.group.delete"
+	ActivityCodeSetupkeyGroupAdd                         ActivityCode = "setupkey.group.add"
+	ActivityCodeRuleAdd                                  ActivityCode = "rule.add"
+	ActivityCodeRuleDelete                               ActivityCode = "rule.delete"
+	ActivityCodeRuleUpdate                               ActivityCode = "rule.update"
+	ActivityCodePolicyAdd                                ActivityCode = "policy.add"
+	ActivityCodePolicyDelete                             ActivityCode = "policy.delete"
+	ActivityCodePolicyUpdate                             ActivityCode = "policy.update"
+	ActivityCodeGroupAdd                                 ActivityCode = "group.add"
+	ActivityCodeGroupUpdate                              ActivityCode = "group.update"
+	ActivityCodeDNSSettingDisabledManagementGroupAdd     ActivityCode = "dns.setting.disabled.management.group.add"
+	ActivityCodeDNSSettingDisabledManagementGroupDelete  ActivityCode = "dns.setting.disabled.management.group.delete"
+	ActivityCodeAccountCreate                            ActivityCode = "account.create"
+	ActivityCodeAccountSettingPeerLoginExpirationUpdate  ActivityCode = "account.setting.peer.login.expiration.update"
+	ActivityCodeAccountSettingPeerLoginExpirationDisable ActivityCode = "account.setting.peer.login.expiration.disable"
+	ActivityCodeAccountSettingPeerLoginExpirationEnable  ActivityCode = "account.setting.peer.login.expiration.enable"
+	ActivityCodeRouteAdd                                 ActivityCode = "route.add"
+	ActivityCodeRouteDelete                              ActivityCode = "route.delete"
+	ActivityCodeRouteUpdate                              ActivityCode = "route.update"
+	ActivityCodeNameserverGroupAdd                       ActivityCode = "nameserver.group.add"
+	ActivityCodeNameserverGroupDelete                    ActivityCode = "nameserver.group.delete"
+	ActivityCodeNameserverGroupUpdate                    ActivityCode = "nameserver.group.update"
+	ActivityCodePeerSSHDisable                           ActivityCode = "peer.ssh.disable"
+	ActivityCodePeerSSHEnable                            ActivityCode = "peer.ssh.enable"
+	ActivityCodePeerRename                               ActivityCode = "peer.rename"
+	ActivityCodePeerLoginExpirationDisable               ActivityCode = "peer.login.expiration.disable"
+	ActivityCodePeerLoginExpirationEnable                ActivityCode = "peer.login.expiration.enable"
+	ActivityCodePeerLoginExpire                          ActivityCode = "peer.login.expire"
+	ActivityCodeServiceUserCreate                        ActivityCode = "service.user.create"
+	ActivityCodePersonalAccessTokenCreate                ActivityCode = "personal.access.token.create"
+	ActivityCodeServiceUserDelete                        ActivityCode = "service.user.delete"
+	ActivityCodePersonalAccessTokenDelete                ActivityCode = "personal.access.token.delete"
 )
 
-func (e EventActivityCode) ToPointer() *EventActivityCode {
+func (e ActivityCode) ToPointer() *ActivityCode {
 	return &e
 }
 
-func (e *EventActivityCode) UnmarshalJSON(data []byte) error {
+func (e *ActivityCode) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -165,10 +165,10 @@ func (e *EventActivityCode) UnmarshalJSON(data []byte) error {
 	case "service.user.delete":
 		fallthrough
 	case "personal.access.token.delete":
-		*e = EventActivityCode(v)
+		*e = ActivityCode(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for EventActivityCode: %v", v)
+		return fmt.Errorf("invalid value for ActivityCode: %v", v)
 	}
 }
 
@@ -176,7 +176,7 @@ type Event struct {
 	// The activity that occurred during the event
 	Activity string `json:"activity"`
 	// The string code of the activity that occurred during the event
-	ActivityCode EventActivityCode `json:"activity_code"`
+	ActivityCode ActivityCode `json:"activity_code"`
 	// Event unique identifier
 	ID string `json:"id"`
 	// The e-mail address of the initiator of the event. E.g., an e-mail of a user that triggered the event.
@@ -211,9 +211,9 @@ func (o *Event) GetActivity() string {
 	return o.Activity
 }
 
-func (o *Event) GetActivityCode() EventActivityCode {
+func (o *Event) GetActivityCode() ActivityCode {
 	if o == nil {
-		return EventActivityCode("")
+		return ActivityCode("")
 	}
 	return o.ActivityCode
 }

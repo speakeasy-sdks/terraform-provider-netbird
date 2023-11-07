@@ -8,27 +8,27 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"netbird/internal/sdk/pkg/models/operations"
-	"netbird/internal/sdk/pkg/models/sdkerrors"
-	"netbird/internal/sdk/pkg/models/shared"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/models/operations"
+	"netbird/v2/internal/sdk/pkg/models/sdkerrors"
+	"netbird/v2/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"strings"
 )
 
-// setupKeys - Interact with and view information about setup keys.
-type setupKeys struct {
+// SetupKeys - Interact with and view information about setup keys.
+type SetupKeys struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSetupKeys(sdkConfig sdkConfiguration) *setupKeys {
-	return &setupKeys{
+func newSetupKeys(sdkConfig sdkConfiguration) *SetupKeys {
+	return &SetupKeys{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAPISetupKeys - List all Setup Keys
 // Returns a list of all Setup Keys
-func (s *setupKeys) GetAPISetupKeys(ctx context.Context, security operations.GetAPISetupKeysSecurity) (*operations.GetAPISetupKeysResponse, error) {
+func (s *SetupKeys) GetAPISetupKeys(ctx context.Context, security operations.GetAPISetupKeysSecurity) (*operations.GetAPISetupKeysResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/setup-keys"
 
@@ -72,7 +72,7 @@ func (s *setupKeys) GetAPISetupKeys(ctx context.Context, security operations.Get
 				return nil, err
 			}
 
-			res.SetupKeys = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -90,7 +90,7 @@ func (s *setupKeys) GetAPISetupKeys(ctx context.Context, security operations.Get
 
 // GetAPISetupKeysKeyID - Retrieve a Setup Key
 // Get information about a setup key
-func (s *setupKeys) GetAPISetupKeysKeyID(ctx context.Context, request operations.GetAPISetupKeysKeyIDRequest, security operations.GetAPISetupKeysKeyIDSecurity) (*operations.GetAPISetupKeysKeyIDResponse, error) {
+func (s *SetupKeys) GetAPISetupKeysKeyID(ctx context.Context, request operations.GetAPISetupKeysKeyIDRequest, security operations.GetAPISetupKeysKeyIDSecurity) (*operations.GetAPISetupKeysKeyIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/setup-keys/{keyId}", request, nil)
 	if err != nil {
@@ -155,7 +155,7 @@ func (s *setupKeys) GetAPISetupKeysKeyID(ctx context.Context, request operations
 
 // PostAPISetupKeys - Create a Setup Key
 // Creates a setup key
-func (s *setupKeys) PostAPISetupKeys(ctx context.Context, request *shared.SetupKeyRequest, security operations.PostAPISetupKeysSecurity) (*operations.PostAPISetupKeysResponse, error) {
+func (s *SetupKeys) PostAPISetupKeys(ctx context.Context, request *shared.SetupKeyRequest, security operations.PostAPISetupKeysSecurity) (*operations.PostAPISetupKeysResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/setup-keys"
 
@@ -227,7 +227,7 @@ func (s *setupKeys) PostAPISetupKeys(ctx context.Context, request *shared.SetupK
 
 // PutAPISetupKeysKeyID - Update a Setup Key
 // Update information about a setup key
-func (s *setupKeys) PutAPISetupKeysKeyID(ctx context.Context, request operations.PutAPISetupKeysKeyIDRequest, security operations.PutAPISetupKeysKeyIDSecurity) (*operations.PutAPISetupKeysKeyIDResponse, error) {
+func (s *SetupKeys) PutAPISetupKeysKeyID(ctx context.Context, request operations.PutAPISetupKeysKeyIDRequest, security operations.PutAPISetupKeysKeyIDSecurity) (*operations.PutAPISetupKeysKeyIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/setup-keys/{keyId}", request, nil)
 	if err != nil {

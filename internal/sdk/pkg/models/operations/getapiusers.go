@@ -4,7 +4,7 @@ package operations
 
 import (
 	"net/http"
-	"netbird/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/models/shared"
 )
 
 type GetAPIUsersSecurity struct {
@@ -46,7 +46,7 @@ type GetAPIUsersResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// A JSON array of Users
-	Users []shared.User
+	Classes []shared.User
 }
 
 func (o *GetAPIUsersResponse) GetContentType() string {
@@ -70,9 +70,9 @@ func (o *GetAPIUsersResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAPIUsersResponse) GetUsers() []shared.User {
+func (o *GetAPIUsersResponse) GetClasses() []shared.User {
 	if o == nil {
 		return nil
 	}
-	return o.Users
+	return o.Classes
 }

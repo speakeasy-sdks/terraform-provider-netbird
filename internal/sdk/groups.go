@@ -8,27 +8,27 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"netbird/internal/sdk/pkg/models/operations"
-	"netbird/internal/sdk/pkg/models/sdkerrors"
-	"netbird/internal/sdk/pkg/models/shared"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/models/operations"
+	"netbird/v2/internal/sdk/pkg/models/sdkerrors"
+	"netbird/v2/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"strings"
 )
 
-// groups - Interact with and view information about groups.
-type groups struct {
+// Groups - Interact with and view information about groups.
+type Groups struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newGroups(sdkConfig sdkConfiguration) *groups {
-	return &groups{
+func newGroups(sdkConfig sdkConfiguration) *Groups {
+	return &Groups{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // DeleteAPIGroupsGroupID - Delete a Group
 // Delete a group
-func (s *groups) DeleteAPIGroupsGroupID(ctx context.Context, request operations.DeleteAPIGroupsGroupIDRequest, security operations.DeleteAPIGroupsGroupIDSecurity) (*operations.DeleteAPIGroupsGroupIDResponse, error) {
+func (s *Groups) DeleteAPIGroupsGroupID(ctx context.Context, request operations.DeleteAPIGroupsGroupIDRequest, security operations.DeleteAPIGroupsGroupIDSecurity) (*operations.DeleteAPIGroupsGroupIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/groups/{groupId}", request, nil)
 	if err != nil {
@@ -83,7 +83,7 @@ func (s *groups) DeleteAPIGroupsGroupID(ctx context.Context, request operations.
 
 // GetAPIGroups - List all Groups
 // Returns a list of all groups
-func (s *groups) GetAPIGroups(ctx context.Context, security operations.GetAPIGroupsSecurity) (*operations.GetAPIGroupsResponse, error) {
+func (s *Groups) GetAPIGroups(ctx context.Context, security operations.GetAPIGroupsSecurity) (*operations.GetAPIGroupsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/groups"
 
@@ -127,7 +127,7 @@ func (s *groups) GetAPIGroups(ctx context.Context, security operations.GetAPIGro
 				return nil, err
 			}
 
-			res.Groups = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -145,7 +145,7 @@ func (s *groups) GetAPIGroups(ctx context.Context, security operations.GetAPIGro
 
 // GetAPIGroupsGroupID - Retrieve a Group
 // Get information about a group
-func (s *groups) GetAPIGroupsGroupID(ctx context.Context, request operations.GetAPIGroupsGroupIDRequest, security operations.GetAPIGroupsGroupIDSecurity) (*operations.GetAPIGroupsGroupIDResponse, error) {
+func (s *Groups) GetAPIGroupsGroupID(ctx context.Context, request operations.GetAPIGroupsGroupIDRequest, security operations.GetAPIGroupsGroupIDSecurity) (*operations.GetAPIGroupsGroupIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/groups/{groupId}", request, nil)
 	if err != nil {
@@ -210,7 +210,7 @@ func (s *groups) GetAPIGroupsGroupID(ctx context.Context, request operations.Get
 
 // PostAPIGroups - Create a Group
 // Creates a group
-func (s *groups) PostAPIGroups(ctx context.Context, request *shared.GroupRequest, security operations.PostAPIGroupsSecurity) (*operations.PostAPIGroupsResponse, error) {
+func (s *Groups) PostAPIGroups(ctx context.Context, request *shared.GroupRequest, security operations.PostAPIGroupsSecurity) (*operations.PostAPIGroupsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/groups"
 
@@ -282,7 +282,7 @@ func (s *groups) PostAPIGroups(ctx context.Context, request *shared.GroupRequest
 
 // PutAPIGroupsGroupID - Update a Group
 // Update/Replace a group
-func (s *groups) PutAPIGroupsGroupID(ctx context.Context, request operations.PutAPIGroupsGroupIDRequest, security operations.PutAPIGroupsGroupIDSecurity) (*operations.PutAPIGroupsGroupIDResponse, error) {
+func (s *Groups) PutAPIGroupsGroupID(ctx context.Context, request operations.PutAPIGroupsGroupIDRequest, security operations.PutAPIGroupsGroupIDSecurity) (*operations.PutAPIGroupsGroupIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/groups/{groupId}", request, nil)
 	if err != nil {

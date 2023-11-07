@@ -4,7 +4,7 @@ package operations
 
 import (
 	"net/http"
-	"netbird/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/models/shared"
 )
 
 type GetAPIPeersSecurity struct {
@@ -29,12 +29,12 @@ func (o *GetAPIPeersSecurity) GetTokenAuth() *string {
 type GetAPIPeersResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// A JSON Array of Peers
-	Peers []shared.Peer
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// A JSON Array of Peers
+	Classes []shared.Peer
 }
 
 func (o *GetAPIPeersResponse) GetContentType() string {
@@ -42,13 +42,6 @@ func (o *GetAPIPeersResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetAPIPeersResponse) GetPeers() []shared.Peer {
-	if o == nil {
-		return nil
-	}
-	return o.Peers
 }
 
 func (o *GetAPIPeersResponse) GetStatusCode() int {
@@ -63,4 +56,11 @@ func (o *GetAPIPeersResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetAPIPeersResponse) GetClasses() []shared.Peer {
+	if o == nil {
+		return nil
+	}
+	return o.Classes
 }

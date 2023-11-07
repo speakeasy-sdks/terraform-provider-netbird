@@ -8,27 +8,27 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"netbird/internal/sdk/pkg/models/operations"
-	"netbird/internal/sdk/pkg/models/sdkerrors"
-	"netbird/internal/sdk/pkg/models/shared"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/models/operations"
+	"netbird/v2/internal/sdk/pkg/models/sdkerrors"
+	"netbird/v2/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"strings"
 )
 
-// routes - Interact with and view information about routes.
-type routes struct {
+// Routes - Interact with and view information about routes.
+type Routes struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newRoutes(sdkConfig sdkConfiguration) *routes {
-	return &routes{
+func newRoutes(sdkConfig sdkConfiguration) *Routes {
+	return &Routes{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // DeleteAPIRoutesRouteID - Delete a Route
 // Delete a route
-func (s *routes) DeleteAPIRoutesRouteID(ctx context.Context, request operations.DeleteAPIRoutesRouteIDRequest, security operations.DeleteAPIRoutesRouteIDSecurity) (*operations.DeleteAPIRoutesRouteIDResponse, error) {
+func (s *Routes) DeleteAPIRoutesRouteID(ctx context.Context, request operations.DeleteAPIRoutesRouteIDRequest, security operations.DeleteAPIRoutesRouteIDSecurity) (*operations.DeleteAPIRoutesRouteIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/routes/{routeId}", request, nil)
 	if err != nil {
@@ -83,7 +83,7 @@ func (s *routes) DeleteAPIRoutesRouteID(ctx context.Context, request operations.
 
 // GetAPIRoutes - List all Routes
 // Returns a list of all routes
-func (s *routes) GetAPIRoutes(ctx context.Context, security operations.GetAPIRoutesSecurity) (*operations.GetAPIRoutesResponse, error) {
+func (s *Routes) GetAPIRoutes(ctx context.Context, security operations.GetAPIRoutesSecurity) (*operations.GetAPIRoutesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/routes"
 
@@ -127,7 +127,7 @@ func (s *routes) GetAPIRoutes(ctx context.Context, security operations.GetAPIRou
 				return nil, err
 			}
 
-			res.Routes = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -145,7 +145,7 @@ func (s *routes) GetAPIRoutes(ctx context.Context, security operations.GetAPIRou
 
 // GetAPIRoutesRouteID - Retrieve a Route
 // Get information about a Routes
-func (s *routes) GetAPIRoutesRouteID(ctx context.Context, request operations.GetAPIRoutesRouteIDRequest, security operations.GetAPIRoutesRouteIDSecurity) (*operations.GetAPIRoutesRouteIDResponse, error) {
+func (s *Routes) GetAPIRoutesRouteID(ctx context.Context, request operations.GetAPIRoutesRouteIDRequest, security operations.GetAPIRoutesRouteIDSecurity) (*operations.GetAPIRoutesRouteIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/routes/{routeId}", request, nil)
 	if err != nil {
@@ -210,7 +210,7 @@ func (s *routes) GetAPIRoutesRouteID(ctx context.Context, request operations.Get
 
 // PostAPIRoutes - Create a Route
 // Creates a Route
-func (s *routes) PostAPIRoutes(ctx context.Context, request *shared.RouteRequest, security operations.PostAPIRoutesSecurity) (*operations.PostAPIRoutesResponse, error) {
+func (s *Routes) PostAPIRoutes(ctx context.Context, request *shared.RouteRequest, security operations.PostAPIRoutesSecurity) (*operations.PostAPIRoutesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/routes"
 
@@ -282,7 +282,7 @@ func (s *routes) PostAPIRoutes(ctx context.Context, request *shared.RouteRequest
 
 // PutAPIRoutesRouteID - Update a Route
 // Update/Replace a Route
-func (s *routes) PutAPIRoutesRouteID(ctx context.Context, request operations.PutAPIRoutesRouteIDRequest, security operations.PutAPIRoutesRouteIDSecurity) (*operations.PutAPIRoutesRouteIDResponse, error) {
+func (s *Routes) PutAPIRoutesRouteID(ctx context.Context, request operations.PutAPIRoutesRouteIDRequest, security operations.PutAPIRoutesRouteIDSecurity) (*operations.PutAPIRoutesRouteIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/routes/{routeId}", request, nil)
 	if err != nil {

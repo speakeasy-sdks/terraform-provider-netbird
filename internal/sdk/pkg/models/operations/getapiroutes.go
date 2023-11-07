@@ -4,7 +4,7 @@ package operations
 
 import (
 	"net/http"
-	"netbird/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/models/shared"
 )
 
 type GetAPIRoutesSecurity struct {
@@ -29,12 +29,12 @@ func (o *GetAPIRoutesSecurity) GetTokenAuth() *string {
 type GetAPIRoutesResponse struct {
 	// HTTP response content type for this operation
 	ContentType string
-	// A JSON Array of Routes
-	Routes []shared.Route
 	// HTTP response status code for this operation
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// A JSON Array of Routes
+	Classes []shared.Route
 }
 
 func (o *GetAPIRoutesResponse) GetContentType() string {
@@ -42,13 +42,6 @@ func (o *GetAPIRoutesResponse) GetContentType() string {
 		return ""
 	}
 	return o.ContentType
-}
-
-func (o *GetAPIRoutesResponse) GetRoutes() []shared.Route {
-	if o == nil {
-		return nil
-	}
-	return o.Routes
 }
 
 func (o *GetAPIRoutesResponse) GetStatusCode() int {
@@ -63,4 +56,11 @@ func (o *GetAPIRoutesResponse) GetRawResponse() *http.Response {
 		return nil
 	}
 	return o.RawResponse
+}
+
+func (o *GetAPIRoutesResponse) GetClasses() []shared.Route {
+	if o == nil {
+		return nil
+	}
+	return o.Classes
 }

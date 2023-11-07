@@ -6,8 +6,8 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"netbird/internal/sdk/pkg/models/shared"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"time"
 )
 
@@ -65,27 +65,27 @@ func (c *sdkConfiguration) GetServerDetails() (string, map[string]string) {
 // Netbird - NetBird REST API: API to manipulate groups, rules, policies and retrieve information about peers and users
 type Netbird struct {
 	// View information about the accounts.
-	Accounts *accounts
+	Accounts *Accounts
 	// Interact with and view information about DNS configuration.
-	DNS *dns
+	DNS *DNS
 	// View information about the account and network events.
-	Events *events
+	Events *Events
 	// Interact with and view information about groups.
-	Groups *groups
+	Groups *Groups
 	// Interact with and view information about peers.
-	Peers *peers
+	Peers *Peers
 	// Interact with and view information about policies.
-	Policies *policies
+	Policies *Policies
 	// Interact with and view information about routes.
-	Routes *routes
+	Routes *Routes
 	// Interact with and view information about rules.
-	Rules *rules
+	Rules *Rules
 	// Interact with and view information about setup keys.
-	SetupKeys *setupKeys
-	// Interact with and view information about tokens.
-	Tokens *tokens
+	SetupKeys *SetupKeys
 	// Interact with and view information about users.
-	Users *users
+	Users *Users
+	// Interact with and view information about tokens.
+	Tokens *Tokens
 
 	sdkConfiguration sdkConfiguration
 }
@@ -162,9 +162,9 @@ func New(opts ...SDKOption) *Netbird {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "1.20.1",
-			GenVersion:        "2.173.0",
-			UserAgent:         "speakeasy-sdk/go 1.20.1 2.173.0 0.0.1 netbird",
+			SDKVersion:        "2.0.0",
+			GenVersion:        "2.181.1",
+			UserAgent:         "speakeasy-sdk/go 2.0.0 2.181.1 0.0.1 netbird",
 		},
 	}
 	for _, opt := range opts {
@@ -201,9 +201,9 @@ func New(opts ...SDKOption) *Netbird {
 
 	sdk.SetupKeys = newSetupKeys(sdk.sdkConfiguration)
 
-	sdk.Tokens = newTokens(sdk.sdkConfiguration)
-
 	sdk.Users = newUsers(sdk.sdkConfiguration)
+
+	sdk.Tokens = newTokens(sdk.sdkConfiguration)
 
 	return sdk
 }

@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-// PolicyRuleAction - Policy rule accept or drops packets
-type PolicyRuleAction string
+// Action - Policy rule accept or drops packets
+type Action string
 
 const (
-	PolicyRuleActionAccept PolicyRuleAction = "accept"
-	PolicyRuleActionDrop   PolicyRuleAction = "drop"
+	ActionAccept Action = "accept"
+	ActionDrop   Action = "drop"
 )
 
-func (e PolicyRuleAction) ToPointer() *PolicyRuleAction {
+func (e Action) ToPointer() *Action {
 	return &e
 }
 
-func (e *PolicyRuleAction) UnmarshalJSON(data []byte) error {
+func (e *Action) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,28 +28,28 @@ func (e *PolicyRuleAction) UnmarshalJSON(data []byte) error {
 	case "accept":
 		fallthrough
 	case "drop":
-		*e = PolicyRuleAction(v)
+		*e = Action(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PolicyRuleAction: %v", v)
+		return fmt.Errorf("invalid value for Action: %v", v)
 	}
 }
 
-// PolicyRuleProtocol - Policy rule type of the traffic
-type PolicyRuleProtocol string
+// Protocol - Policy rule type of the traffic
+type Protocol string
 
 const (
-	PolicyRuleProtocolAll  PolicyRuleProtocol = "all"
-	PolicyRuleProtocolTCP  PolicyRuleProtocol = "tcp"
-	PolicyRuleProtocolUDP  PolicyRuleProtocol = "udp"
-	PolicyRuleProtocolIcmp PolicyRuleProtocol = "icmp"
+	ProtocolAll  Protocol = "all"
+	ProtocolTCP  Protocol = "tcp"
+	ProtocolUDP  Protocol = "udp"
+	ProtocolIcmp Protocol = "icmp"
 )
 
-func (e PolicyRuleProtocol) ToPointer() *PolicyRuleProtocol {
+func (e Protocol) ToPointer() *Protocol {
 	return &e
 }
 
-func (e *PolicyRuleProtocol) UnmarshalJSON(data []byte) error {
+func (e *Protocol) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -62,16 +62,16 @@ func (e *PolicyRuleProtocol) UnmarshalJSON(data []byte) error {
 	case "udp":
 		fallthrough
 	case "icmp":
-		*e = PolicyRuleProtocol(v)
+		*e = Protocol(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for PolicyRuleProtocol: %v", v)
+		return fmt.Errorf("invalid value for Protocol: %v", v)
 	}
 }
 
 type PolicyRule struct {
 	// Policy rule accept or drops packets
-	Action PolicyRuleAction `json:"action"`
+	Action Action `json:"action"`
 	// Define if the rule is applicable in both directions, sources, and destinations.
 	Bidirectional bool `json:"bidirectional"`
 	// Policy rule friendly description
@@ -87,14 +87,14 @@ type PolicyRule struct {
 	// Policy rule affected ports or it ranges list
 	Ports []string `json:"ports,omitempty"`
 	// Policy rule type of the traffic
-	Protocol PolicyRuleProtocol `json:"protocol"`
+	Protocol Protocol `json:"protocol"`
 	// Policy rule source groups
 	Sources []GroupMinimum `json:"sources"`
 }
 
-func (o *PolicyRule) GetAction() PolicyRuleAction {
+func (o *PolicyRule) GetAction() Action {
 	if o == nil {
-		return PolicyRuleAction("")
+		return Action("")
 	}
 	return o.Action
 }
@@ -148,9 +148,9 @@ func (o *PolicyRule) GetPorts() []string {
 	return o.Ports
 }
 
-func (o *PolicyRule) GetProtocol() PolicyRuleProtocol {
+func (o *PolicyRule) GetProtocol() Protocol {
 	if o == nil {
-		return PolicyRuleProtocol("")
+		return Protocol("")
 	}
 	return o.Protocol
 }

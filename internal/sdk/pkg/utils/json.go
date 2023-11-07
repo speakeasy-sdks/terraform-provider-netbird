@@ -12,7 +12,7 @@ import (
 	"time"
 	"unsafe"
 
-	"netbird/internal/sdk/pkg/types"
+	"netbird/v2/internal/sdk/pkg/types"
 
 	"github.com/ericlagergren/decimal"
 )

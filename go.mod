@@ -1,4 +1,4 @@
-module netbird
+module netbird/v2
 
 go 1.18
 

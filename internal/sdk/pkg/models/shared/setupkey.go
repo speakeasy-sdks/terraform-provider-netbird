@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"time"
 )
 

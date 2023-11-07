@@ -4,7 +4,7 @@ package numberplanmodifier
 
 import (
 	"context"
-	"netbird/internal/planmodifiers/utils"
+	"netbird/v2/internal/planmodifiers/utils"
 
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 )

@@ -8,27 +8,27 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"netbird/internal/sdk/pkg/models/operations"
-	"netbird/internal/sdk/pkg/models/sdkerrors"
-	"netbird/internal/sdk/pkg/models/shared"
-	"netbird/internal/sdk/pkg/utils"
+	"netbird/v2/internal/sdk/pkg/models/operations"
+	"netbird/v2/internal/sdk/pkg/models/sdkerrors"
+	"netbird/v2/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk/pkg/utils"
 	"strings"
 )
 
-// events - View information about the account and network events.
-type events struct {
+// Events - View information about the account and network events.
+type Events struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newEvents(sdkConfig sdkConfiguration) *events {
-	return &events{
+func newEvents(sdkConfig sdkConfiguration) *Events {
+	return &Events{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetAPIEvents - List all Events
 // Returns a list of all events
-func (s *events) GetAPIEvents(ctx context.Context, security operations.GetAPIEventsSecurity) (*operations.GetAPIEventsResponse, error) {
+func (s *Events) GetAPIEvents(ctx context.Context, security operations.GetAPIEventsSecurity) (*operations.GetAPIEventsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/events"
 
@@ -72,7 +72,7 @@ func (s *events) GetAPIEvents(ctx context.Context, security operations.GetAPIEve
 				return nil, err
 			}
 
-			res.Events = out
+			res.Classes = out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

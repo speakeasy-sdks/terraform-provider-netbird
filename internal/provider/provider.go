@@ -4,8 +4,8 @@ package provider
 
 import (
 	"context"
-	"netbird/internal/sdk"
-	"netbird/internal/sdk/pkg/models/shared"
+	"netbird/v2/internal/sdk"
+	"netbird/v2/internal/sdk/pkg/models/shared"
 
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
