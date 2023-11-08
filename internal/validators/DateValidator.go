@@ -4,9 +4,9 @@ package validators
 
 import (
 	"context"
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/types"
 	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
-	"netbird/v2/internal/sdk/pkg/types"
 )
 
 var _ validator.String = DateValidator{}

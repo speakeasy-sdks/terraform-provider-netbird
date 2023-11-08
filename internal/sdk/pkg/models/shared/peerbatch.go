@@ -7,9 +7,9 @@ import (
 	"time"
 )
 
-type Peer struct {
-	// List of accessible peers
-	AccessiblePeers []AccessiblePeer `json:"accessible_peers"`
+type PeerBatch struct {
+	// Number of accessible peers
+	AccessiblePeersCount int64 `json:"accessible_peers_count"`
 	// Peer to Management connection status
 	Connected bool `json:"connected"`
 	// Peer's DNS label is the parsed peer name for domain resolution. It is used to form an FQDN by appending the account's domain to the peer label. e.g. peer-dns-label.netbird.cloud
@@ -44,130 +44,130 @@ type Peer struct {
 	Version string `json:"version"`
 }
 
-func (p Peer) MarshalJSON() ([]byte, error) {
+func (p PeerBatch) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(p, "", false)
 }
 
-func (p *Peer) UnmarshalJSON(data []byte) error {
+func (p *PeerBatch) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &p, "", false, false); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (o *Peer) GetAccessiblePeers() []AccessiblePeer {
+func (o *PeerBatch) GetAccessiblePeersCount() int64 {
 	if o == nil {
-		return []AccessiblePeer{}
+		return 0
 	}
-	return o.AccessiblePeers
+	return o.AccessiblePeersCount
 }
 
-func (o *Peer) GetConnected() bool {
+func (o *PeerBatch) GetConnected() bool {
 	if o == nil {
 		return false
 	}
 	return o.Connected
 }
 
-func (o *Peer) GetDNSLabel() string {
+func (o *PeerBatch) GetDNSLabel() string {
 	if o == nil {
 		return ""
 	}
 	return o.DNSLabel
 }
 
-func (o *Peer) GetGroups() []GroupMinimum {
+func (o *PeerBatch) GetGroups() []GroupMinimum {
 	if o == nil {
 		return []GroupMinimum{}
 	}
 	return o.Groups
 }
 
-func (o *Peer) GetHostname() string {
+func (o *PeerBatch) GetHostname() string {
 	if o == nil {
 		return ""
 	}
 	return o.Hostname
 }
 
-func (o *Peer) GetID() string {
+func (o *PeerBatch) GetID() string {
 	if o == nil {
 		return ""
 	}
 	return o.ID
 }
 
-func (o *Peer) GetIP() string {
+func (o *PeerBatch) GetIP() string {
 	if o == nil {
 		return ""
 	}
 	return o.IP
 }
 
-func (o *Peer) GetLastLogin() time.Time {
+func (o *PeerBatch) GetLastLogin() time.Time {
 	if o == nil {
 		return time.Time{}
 	}
 	return o.LastLogin
 }
 
-func (o *Peer) GetLastSeen() time.Time {
+func (o *PeerBatch) GetLastSeen() time.Time {
 	if o == nil {
 		return time.Time{}
 	}
 	return o.LastSeen
 }
 
-func (o *Peer) GetLoginExpirationEnabled() bool {
+func (o *PeerBatch) GetLoginExpirationEnabled() bool {
 	if o == nil {
 		return false
 	}
 	return o.LoginExpirationEnabled
 }
 
-func (o *Peer) GetLoginExpired() bool {
+func (o *PeerBatch) GetLoginExpired() bool {
 	if o == nil {
 		return false
 	}
 	return o.LoginExpired
 }
 
-func (o *Peer) GetName() string {
+func (o *PeerBatch) GetName() string {
 	if o == nil {
 		return ""
 	}
 	return o.Name
 }
 
-func (o *Peer) GetOs() string {
+func (o *PeerBatch) GetOs() string {
 	if o == nil {
 		return ""
 	}
 	return o.Os
 }
 
-func (o *Peer) GetSSHEnabled() bool {
+func (o *PeerBatch) GetSSHEnabled() bool {
 	if o == nil {
 		return false
 	}
 	return o.SSHEnabled
 }
 
-func (o *Peer) GetUIVersion() *string {
+func (o *PeerBatch) GetUIVersion() *string {
 	if o == nil {
 		return nil
 	}
 	return o.UIVersion
 }
 
-func (o *Peer) GetUserID() *string {
+func (o *PeerBatch) GetUserID() *string {
 	if o == nil {
 		return nil
 	}
 	return o.UserID
 }
 
-func (o *Peer) GetVersion() string {
+func (o *PeerBatch) GetVersion() string {
 	if o == nil {
 		return ""
 	}

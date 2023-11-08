@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/models/shared"
 	"net/http"
-	"netbird/v2/internal/sdk/pkg/models/shared"
 )
 
 type GetAPIPeersSecurity struct {
@@ -34,7 +34,7 @@ type GetAPIPeersResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// A JSON Array of Peers
-	Classes []shared.Peer
+	Classes []shared.PeerBatch
 }
 
 func (o *GetAPIPeersResponse) GetContentType() string {
@@ -58,7 +58,7 @@ func (o *GetAPIPeersResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAPIPeersResponse) GetClasses() []shared.Peer {
+func (o *GetAPIPeersResponse) GetClasses() []shared.PeerBatch {
 	if o == nil {
 		return nil
 	}

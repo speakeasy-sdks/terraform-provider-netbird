@@ -5,7 +5,7 @@ package shared
 import (
 	"encoding/json"
 	"fmt"
-	"netbird/v2/internal/sdk/pkg/utils"
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/utils"
 	"time"
 )
 

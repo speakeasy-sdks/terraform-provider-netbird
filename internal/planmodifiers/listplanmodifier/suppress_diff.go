@@ -4,7 +4,7 @@ package listplanmodifier
 
 import (
 	"context"
-	"netbird/v2/internal/planmodifiers/utils"
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/planmodifiers/utils"
 
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 )

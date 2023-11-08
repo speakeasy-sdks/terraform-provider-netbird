@@ -119,8 +119,10 @@ internal/sdk/pkg/models/shared/event.go
 internal/sdk/pkg/models/shared/group.go
 internal/sdk/pkg/models/shared/peerminimum.go
 internal/sdk/pkg/models/shared/grouprequest.go
-internal/sdk/pkg/models/shared/peer.go
+internal/sdk/pkg/models/shared/peerbatch.go
 internal/sdk/pkg/models/shared/groupminimum.go
+internal/sdk/pkg/models/shared/peer.go
+internal/sdk/pkg/models/shared/accessiblepeer.go
 internal/sdk/pkg/models/shared/peerrequest.go
 internal/sdk/pkg/models/shared/policy.go
 internal/sdk/pkg/models/shared/policyrule.go

@@ -3,8 +3,8 @@
 package operations
 
 import (
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/models/shared"
 	"net/http"
-	"netbird/v2/internal/sdk/pkg/models/shared"
 )
 
 type GetAPIRoutesSecurity struct {

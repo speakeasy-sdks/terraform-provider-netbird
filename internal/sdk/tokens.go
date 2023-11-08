@@ -6,12 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/models/operations"
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/models/sdkerrors"
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/models/shared"
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/utils"
 	"io"
 	"net/http"
-	"netbird/v2/internal/sdk/pkg/models/operations"
-	"netbird/v2/internal/sdk/pkg/models/sdkerrors"
-	"netbird/v2/internal/sdk/pkg/models/shared"
-	"netbird/v2/internal/sdk/pkg/utils"
 )
 
 // Tokens - Interact with and view information about tokens.

@@ -12,7 +12,7 @@ import (
 	"time"
 	"unsafe"
 
-	"netbird/v2/internal/sdk/pkg/types"
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/types"
 
 	"github.com/ericlagergren/decimal"
 )

@@ -6,12 +6,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/models/operations"
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/models/sdkerrors"
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/models/shared"
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/utils"
 	"io"
 	"net/http"
-	"netbird/v2/internal/sdk/pkg/models/operations"
-	"netbird/v2/internal/sdk/pkg/models/sdkerrors"
-	"netbird/v2/internal/sdk/pkg/models/shared"
-	"netbird/v2/internal/sdk/pkg/utils"
 	"strings"
 )
 
@@ -122,7 +122,7 @@ func (s *Peers) GetAPIPeers(ctx context.Context, security operations.GetAPIPeers
 	case httpRes.StatusCode == 200:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out []shared.Peer
+			var out []shared.PeerBatch
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

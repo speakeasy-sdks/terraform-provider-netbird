@@ -7,8 +7,8 @@ import (
 	"flag"
 	"log"
 
+	"github.com/NetBird/terraform-provider-netbird/v2/internal/provider"
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
-	"netbird/v2/internal/provider"
 )
 
 // Run "go generate" to format example terraform files and generate the docs for the registry/website
