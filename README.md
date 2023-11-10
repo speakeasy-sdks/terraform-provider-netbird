@@ -10,7 +10,7 @@ terraform {
   required_providers {
     netbird = {
       source  = "NetBird/netbird"
-      version = "2.1.1"
+      version = "2.2.0"
     }
   }
 }
@@ -22,11 +22,13 @@ provider "netbird" {
 <!-- End SDK Installation -->
 
 <!-- Start SDK Example Usage -->
-## Testing the provider locally
+### Testing the provider locally
 
 Should you want to validate a change locally, the `--debug` flag allows you to execute the provider against a terraform instance locally.
 
 This also allows for debuggers (e.g. delve) to be attached to the provider.
+
+### Example
 
 ```sh
 go run main.go --debug
