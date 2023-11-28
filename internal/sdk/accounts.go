@@ -26,6 +26,61 @@ func newAccounts(sdkConfig sdkConfiguration) *Accounts {
 	}
 }
 
+// DeleteAPIAccountsAccountID - Delete an Account
+// Deletes an account and all its resources. Only administrators and account owners can delete accounts.
+func (s *Accounts) DeleteAPIAccountsAccountID(ctx context.Context, request operations.DeleteAPIAccountsAccountIDRequest, security operations.DeleteAPIAccountsAccountIDSecurity) (*operations.DeleteAPIAccountsAccountIDResponse, error) {
+	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	url, err := utils.GenerateURL(ctx, baseURL, "/api/accounts/{accountId}", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "DELETE", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "*/*")
+	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
+
+	client := utils.ConfigureSecurityClient(s.sdkConfiguration.DefaultClient, withSecurity(security))
+
+	httpRes, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending request: %w", err)
+	}
+	if httpRes == nil {
+		return nil, fmt.Errorf("error sending request: no response")
+	}
+
+	rawBody, err := io.ReadAll(httpRes.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response body: %w", err)
+	}
+	httpRes.Body.Close()
+	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
+
+	contentType := httpRes.Header.Get("Content-Type")
+
+	res := &operations.DeleteAPIAccountsAccountIDResponse{
+		StatusCode:  httpRes.StatusCode,
+		ContentType: contentType,
+		RawResponse: httpRes,
+	}
+	switch {
+	case httpRes.StatusCode == 200:
+		fallthrough
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 401:
+		fallthrough
+	case httpRes.StatusCode == 403:
+		fallthrough
+	case httpRes.StatusCode == 500:
+	}
+
+	return res, nil
+}
+
 // GetAPIAccounts - List all Accounts
 // Returns a list of accounts of a user. Always returns a list of one account.
 func (s *Accounts) GetAPIAccounts(ctx context.Context, security operations.GetAPIAccountsSecurity) (*operations.GetAPIAccountsResponse, error) {

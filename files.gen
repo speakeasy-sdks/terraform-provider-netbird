@@ -61,6 +61,7 @@ internal/validators/RFC3339Validator.go
 main.go
 terraform-registry-manifest.json
 tools/tools.go
+internal/sdk/pkg/models/operations/deleteapiaccountsaccountid.go
 internal/sdk/pkg/models/operations/getapiaccounts.go
 internal/sdk/pkg/models/operations/putapiaccountsaccountid.go
 internal/sdk/pkg/models/operations/deleteapidnsnameserversnsgroupid.go
