@@ -3,9 +3,18 @@
 package shared
 
 type PeerRequest struct {
+	// (Cloud only) Indicates whether peer needs approval
+	ApprovalRequired       *bool  `json:"approval_required,omitempty"`
 	LoginExpirationEnabled bool   `json:"login_expiration_enabled"`
 	Name                   string `json:"name"`
 	SSHEnabled             bool   `json:"ssh_enabled"`
+}
+
+func (o *PeerRequest) GetApprovalRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ApprovalRequired
 }
 
 func (o *PeerRequest) GetLoginExpirationEnabled() bool {

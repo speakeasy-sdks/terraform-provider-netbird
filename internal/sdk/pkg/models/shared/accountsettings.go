@@ -3,6 +3,7 @@
 package shared
 
 type AccountSettings struct {
+	Extra *AccountExtraSettings `json:"extra,omitempty"`
 	// Allows propagate the new user auto groups to peers that belongs to the user
 	GroupsPropagationEnabled *bool `json:"groups_propagation_enabled,omitempty"`
 	// Name of the claim from which we extract groups names to add it to account groups.
@@ -13,6 +14,13 @@ type AccountSettings struct {
 	PeerLoginExpiration int64 `json:"peer_login_expiration"`
 	// Enables or disables peer login expiration globally. After peer's login has expired the user has to log in (authenticate). Applies only to peers that were added by a user (interactive SSO login).
 	PeerLoginExpirationEnabled bool `json:"peer_login_expiration_enabled"`
+}
+
+func (o *AccountSettings) GetExtra() *AccountExtraSettings {
+	if o == nil {
+		return nil
+	}
+	return o.Extra
 }
 
 func (o *AccountSettings) GetGroupsPropagationEnabled() *bool {

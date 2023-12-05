@@ -111,6 +111,7 @@ internal/sdk/pkg/models/operations/getapiusersuseridtokenstokenid.go
 internal/sdk/pkg/models/operations/postapiusersuseridtokens.go
 internal/sdk/pkg/models/shared/account.go
 internal/sdk/pkg/models/shared/accountsettings.go
+internal/sdk/pkg/models/shared/accountextrasettings.go
 internal/sdk/pkg/models/shared/accountrequest.go
 internal/sdk/pkg/models/shared/nameservergroup.go
 internal/sdk/pkg/models/shared/nameserver.go

@@ -10,6 +10,8 @@ import (
 type Peer struct {
 	// List of accessible peers
 	AccessiblePeers []AccessiblePeer `json:"accessible_peers"`
+	// (Cloud only) Indicates whether peer needs approval
+	ApprovalRequired *bool `json:"approval_required,omitempty"`
 	// Peer to Management connection status
 	Connected bool `json:"connected"`
 	// Peer's DNS label is the parsed peer name for domain resolution. It is used to form an FQDN by appending the account's domain to the peer label. e.g. peer-dns-label.netbird.cloud
@@ -60,6 +62,13 @@ func (o *Peer) GetAccessiblePeers() []AccessiblePeer {
 		return []AccessiblePeer{}
 	}
 	return o.AccessiblePeers
+}
+
+func (o *Peer) GetApprovalRequired() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.ApprovalRequired
 }
 
 func (o *Peer) GetConnected() bool {
