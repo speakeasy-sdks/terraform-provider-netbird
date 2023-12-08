@@ -5,7 +5,7 @@ package shared
 type RuleRequest struct {
 	// Rule friendly description
 	Description string `json:"description"`
-	// List of destination groups
+	// List of destination group IDs
 	Destinations []string `json:"destinations,omitempty"`
 	// Rules status
 	Disabled bool `json:"disabled"`
@@ -13,7 +13,7 @@ type RuleRequest struct {
 	Flow string `json:"flow"`
 	// Rule name identifier
 	Name string `json:"name"`
-	// List of source groups
+	// List of source group IDs
 	Sources []string `json:"sources,omitempty"`
 }
 

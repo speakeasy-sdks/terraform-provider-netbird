@@ -1,9 +1,9 @@
 configVersion: 1.0.0
 management:
-  docChecksum: bb54f51d1e1e361879674265d61a0dfc
+  docChecksum: ba79a90056ece4367e987c3dc908e786
   docVersion: 0.0.1
-  speakeasyVersion: 1.125.1
-  generationVersion: 2.210.3
+  speakeasyVersion: 1.125.2
+  generationVersion: 2.210.6
 generation:
   comments: {}
   sdkClassName: netbird
@@ -17,7 +17,7 @@ features:
     globalServerURLs: 2.82.1
     methodSecurity: 2.82.0
 terraform:
-  version: 2.3.3
+  version: 2.3.4
   author: NetBird
   imports:
     option: openapi

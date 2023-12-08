@@ -3,7 +3,7 @@
 package shared
 
 type UserCreateRequest struct {
-	// Groups to auto-assign to peers registered by this user
+	// Group IDs to auto-assign to peers registered by this user
 	AutoGroups []string `json:"auto_groups"`
 	// User's Email to send invite to
 	Email *string `json:"email,omitempty"`

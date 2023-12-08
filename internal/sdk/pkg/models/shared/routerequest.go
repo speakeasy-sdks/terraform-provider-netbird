@@ -7,7 +7,7 @@ type RouteRequest struct {
 	Description string `json:"description"`
 	// Route status
 	Enabled bool `json:"enabled"`
-	// Route group tag groups
+	// Group IDs containing routing peers
 	Groups []string `json:"groups"`
 	// Indicate if peer should masquerade traffic to this route's prefix
 	Masquerade bool `json:"masquerade"`

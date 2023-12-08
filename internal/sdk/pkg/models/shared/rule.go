@@ -5,7 +5,7 @@ package shared
 type Rule struct {
 	// Rule friendly description
 	Description string `json:"description"`
-	// Rule destination groups
+	// Rule destination group IDs
 	Destinations []GroupMinimum `json:"destinations"`
 	// Rules status
 	Disabled bool `json:"disabled"`
@@ -15,7 +15,7 @@ type Rule struct {
 	ID string `json:"id"`
 	// Rule name identifier
 	Name string `json:"name"`
-	// Rule source groups
+	// Rule source group IDs
 	Sources []GroupMinimum `json:"sources"`
 }
 

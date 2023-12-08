@@ -3,21 +3,21 @@
 package shared
 
 type NameserverGroupRequest struct {
-	// Nameserver group  description
+	// Description of the nameserver group
 	Description string `json:"description"`
-	// Nameserver group match domain list
+	// Match domain list. It should be empty only if primary is true.
 	Domains []string `json:"domains"`
 	// Nameserver group status
 	Enabled bool `json:"enabled"`
-	// Nameserver group tag groups
+	// Distribution group IDs that defines group of peers that will use this nameserver group
 	Groups []string `json:"groups"`
-	// Nameserver group name
+	// Name of nameserver group name
 	Name string `json:"name"`
-	// Nameserver group
+	// Nameserver list
 	Nameservers []Nameserver `json:"nameservers"`
-	// Nameserver group primary status
+	// Defines if a nameserver group is primary that resolves all domains. It should be true only if domains list is empty.
 	Primary bool `json:"primary"`
-	// Nameserver group search domain status for match domains. It should be true only if domains list is not empty.
+	// Search domain status for match domains. It should be true only if domains list is not empty.
 	SearchDomainsEnabled bool `json:"search_domains_enabled"`
 }
 

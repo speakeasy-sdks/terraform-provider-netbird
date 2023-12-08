@@ -7,7 +7,7 @@ type Route struct {
 	Description string `json:"description"`
 	// Route status
 	Enabled bool `json:"enabled"`
-	// Route group tag groups
+	// Group IDs containing routing peers
 	Groups []string `json:"groups"`
 	// Route Id
 	ID string `json:"id"`

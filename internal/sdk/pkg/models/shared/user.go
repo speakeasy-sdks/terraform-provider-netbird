@@ -41,7 +41,7 @@ func (e *Status) UnmarshalJSON(data []byte) error {
 }
 
 type User struct {
-	// Groups to auto-assign to peers registered by this user
+	// Group IDs to auto-assign to peers registered by this user
 	AutoGroups []string `json:"auto_groups"`
 	// User's email address
 	Email string `json:"email"`

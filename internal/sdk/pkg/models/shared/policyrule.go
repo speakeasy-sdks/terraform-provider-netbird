@@ -76,7 +76,7 @@ type PolicyRule struct {
 	Bidirectional bool `json:"bidirectional"`
 	// Policy rule friendly description
 	Description *string `json:"description,omitempty"`
-	// Policy rule destination groups
+	// Policy rule destination group IDs
 	Destinations []GroupMinimum `json:"destinations"`
 	// Policy rule status
 	Enabled bool `json:"enabled"`
@@ -88,7 +88,7 @@ type PolicyRule struct {
 	Ports []string `json:"ports,omitempty"`
 	// Policy rule type of the traffic
 	Protocol Protocol `json:"protocol"`
-	// Policy rule source groups
+	// Policy rule source group IDs
 	Sources []GroupMinimum `json:"sources"`
 }
 
