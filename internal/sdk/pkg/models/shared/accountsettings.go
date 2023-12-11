@@ -6,6 +6,8 @@ type AccountSettings struct {
 	Extra *AccountExtraSettings `json:"extra,omitempty"`
 	// Allows propagate the new user auto groups to peers that belongs to the user
 	GroupsPropagationEnabled *bool `json:"groups_propagation_enabled,omitempty"`
+	// List of groups to which users are allowed access
+	JwtAllowGroups []string `json:"jwt_allow_groups,omitempty"`
 	// Name of the claim from which we extract groups names to add it to account groups.
 	JwtGroupsClaimName *string `json:"jwt_groups_claim_name,omitempty"`
 	// Allows extract groups from JWT claim and add it to account groups.
@@ -28,6 +30,13 @@ func (o *AccountSettings) GetGroupsPropagationEnabled() *bool {
 		return nil
 	}
 	return o.GroupsPropagationEnabled
+}
+
+func (o *AccountSettings) GetJwtAllowGroups() []string {
+	if o == nil {
+		return nil
+	}
+	return o.JwtAllowGroups
 }
 
 func (o *AccountSettings) GetJwtGroupsClaimName() *string {
