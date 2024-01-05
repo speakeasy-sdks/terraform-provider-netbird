@@ -163,8 +163,8 @@ func New(opts ...SDKOption) *Netbird {
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
 			SDKVersion:        "2.3.5",
-			GenVersion:        "2.210.6",
-			UserAgent:         "speakeasy-sdk/go 2.3.5 2.210.6 0.0.1 netbird",
+			GenVersion:        "2.225.2",
+			UserAgent:         "speakeasy-sdk/go 2.3.5 2.225.2 0.0.1 netbird",
 		},
 	}
 	for _, opt := range opts {
