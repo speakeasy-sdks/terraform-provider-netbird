@@ -23,3 +23,91 @@ func IsAllStateUnknown(ctx context.Context, state tfsdk.State) bool {
 
 	return !anyFound
 }
+
+func IsAnyKnownChange(ctx context.Context, plan tfsdk.Plan, state tfsdk.State) bool {
+	attrs := state.Schema.GetAttributes()
+	anyFound := false
+	for k, _ := range attrs {
+		stateValue := new(attr.Value)
+		planValue := new(attr.Value)
+		state.GetAttribute(ctx, path.Root(k), stateValue)
+		plan.GetAttribute(ctx, path.Root(k), planValue)
+		anyFound = !isKnownEqual(ctx, stateValue, planValue)
+		if anyFound {
+			break
+		}
+	}
+
+	return anyFound
+}
+
+type HasElements interface {
+	Elements() []attr.Value
+	IsUnknown() bool
+	IsNull() bool
+}
+type HasAttributes interface {
+	Attributes() map[string]attr.Value
+	IsUnknown() bool
+	IsNull() bool
+}
+
+func isKnownEqual(ctx context.Context, a *attr.Value, b *attr.Value) bool {
+	if (*a).IsUnknown() || (*b).IsUnknown() {
+		return true
+	}
+	aType := (*a).Type(ctx)
+	bType := (*b).Type(ctx)
+	if !aType.Equal(bType) {
+		return false
+	}
+	attributeTypes, ok := aType.(attr.TypeWithAttributeTypes)
+	if ok {
+		check := true
+		for k, _ := range attributeTypes.AttributeTypes() {
+			objValA, isObjA := (*a).(HasAttributes)
+			objValB, isObjB := (*b).(HasAttributes)
+			if isObjA && isObjB {
+				if objValA.IsUnknown() || objValB.IsUnknown() {
+					continue
+				}
+				attrA, foundA := objValA.Attributes()[k]
+				attrB, foundB := objValB.Attributes()[k]
+				if foundA != foundB {
+					return false
+				}
+				if foundA {
+					check = isKnownEqual(ctx, &attrA, &attrB)
+				}
+			}
+			if !check {
+				break
+			}
+		}
+		return check
+	}
+	_, ok = aType.(attr.TypeWithElementType)
+	if ok {
+		aVal, aValList := (*a).(HasElements)
+		bVal, bValList := (*b).(HasElements)
+		if aValList && bValList {
+			if ((aVal).IsUnknown() || (aVal).IsNull()) && ((bVal).IsUnknown() || (bVal).IsNull()) {
+				return true
+			}
+			if len(aVal.Elements()) != len(bVal.Elements()) {
+				return false
+			} else {
+				for i, _ := range aVal.Elements() {
+					if !isKnownEqual(ctx, &aVal.Elements()[i], &bVal.Elements()[i]) {
+						return false
+					}
+				}
+			}
+			return true
+		}
+		return false
+	}
+
+	isEqual := (*a).Equal(*b)
+	return isEqual
+}

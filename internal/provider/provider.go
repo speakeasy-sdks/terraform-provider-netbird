@@ -6,7 +6,6 @@ import (
 	"context"
 	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk"
 	"github.com/NetBird/terraform-provider-netbird/v2/internal/sdk/pkg/models/shared"
-
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"

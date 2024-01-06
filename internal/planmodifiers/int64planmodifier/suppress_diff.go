@@ -9,13 +9,24 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource/schema/planmodifier"
 )
 
+const (
+	// Standard suppresses "(known after changes)" messages unless there's an explicit change in state [excluding null <=> unknown transitions]
+	Standard = iota
+	// ExplicitSuppress strategy suppresses "(known after changes)" messages unless we're in the initial creation
+	ExplicitSuppress = iota
+)
+
 // SuppressDiff returns a plan modifier that propagates a state value into the planned value, when it is Known, and the Plan Value is Unknown
-func SuppressDiff() planmodifier.Int64 {
-	return suppressDiff{}
+func SuppressDiff(strategy int) planmodifier.Int64 {
+	return suppressDiff{
+		strategy: strategy,
+	}
 }
 
 // suppressDiff implements the plan modifier.
-type suppressDiff struct{}
+type suppressDiff struct {
+	strategy int
+}
 
 // Description returns a human-readable description of the plan modifier.
 func (m suppressDiff) Description(_ context.Context) string {
@@ -40,6 +51,9 @@ func (m suppressDiff) PlanModifyInt64(ctx context.Context, req planmodifier.Int6
 	}
 
 	if utils.IsAllStateUnknown(ctx, req.State) {
+		return
+	}
+	if m.strategy == Standard && utils.IsAnyKnownChange(ctx, req.Plan, req.State) {
 		return
 	}
 
