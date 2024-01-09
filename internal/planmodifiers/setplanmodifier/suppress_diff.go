@@ -10,8 +10,6 @@ import (
 )
 
 const (
-	// Standard suppresses "(known after changes)" messages unless there's an explicit change in state [excluding null <=> unknown transitions]
-	Standard = iota
 	// ExplicitSuppress strategy suppresses "(known after changes)" messages unless we're in the initial creation
 	ExplicitSuppress = iota
 )
@@ -51,9 +49,6 @@ func (m suppressDiff) PlanModifySet(ctx context.Context, req planmodifier.SetReq
 	}
 
 	if utils.IsAllStateUnknown(ctx, req.State) {
-		return
-	}
-	if m.strategy == Standard && utils.IsAnyKnownChange(ctx, req.Plan, req.State) {
 		return
 	}
 
