@@ -27,7 +27,9 @@ func newRules(sdkConfig sdkConfiguration) *Rules {
 }
 
 // DeleteAPIRulesRuleID - Delete a Rule
-// Delete a rule
+// Delete a rule. This will be deprecated in favour of `/api/policies/{policyID}`.
+//
+// Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
 func (s *Rules) DeleteAPIRulesRuleID(ctx context.Context, request operations.DeleteAPIRulesRuleIDRequest, security operations.DeleteAPIRulesRuleIDSecurity) (*operations.DeleteAPIRulesRuleIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/rules/{ruleId}", request, nil)
@@ -82,7 +84,9 @@ func (s *Rules) DeleteAPIRulesRuleID(ctx context.Context, request operations.Del
 }
 
 // GetAPIRules - List all Rules
-// Returns a list of all rules
+// Returns a list of all rules. This will be deprecated in favour of `/api/policies`.
+//
+// Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
 func (s *Rules) GetAPIRules(ctx context.Context, security operations.GetAPIRulesSecurity) (*operations.GetAPIRulesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/rules"
@@ -144,7 +148,9 @@ func (s *Rules) GetAPIRules(ctx context.Context, security operations.GetAPIRules
 }
 
 // GetAPIRulesRuleID - Retrieve a Rule
-// Get information about a rules
+// Get information about a rules. This will be deprecated in favour of `/api/policies/{policyID}`.
+//
+// Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
 func (s *Rules) GetAPIRulesRuleID(ctx context.Context, request operations.GetAPIRulesRuleIDRequest, security operations.GetAPIRulesRuleIDSecurity) (*operations.GetAPIRulesRuleIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/rules/{ruleId}", request, nil)
@@ -209,7 +215,9 @@ func (s *Rules) GetAPIRulesRuleID(ctx context.Context, request operations.GetAPI
 }
 
 // PostAPIRules - Create a Rule
-// Creates a rule
+// Creates a rule. This will be deprecated in favour of `/api/policies`.
+//
+// Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
 func (s *Rules) PostAPIRules(ctx context.Context, request *shared.RuleRequest, security operations.PostAPIRulesSecurity) (*operations.PostAPIRulesResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/api/rules"
@@ -274,7 +282,9 @@ func (s *Rules) PostAPIRules(ctx context.Context, request *shared.RuleRequest, s
 }
 
 // PutAPIRulesRuleID - Update a Rule
-// Update/Replace a rule
+// Update/Replace a rule. This will be deprecated in favour of `/api/policies/{policyID}`.
+//
+// Deprecated method: This will be removed in a future release, please migrate away from it as soon as possible.
 func (s *Rules) PutAPIRulesRuleID(ctx context.Context, request operations.PutAPIRulesRuleIDRequest, security operations.PutAPIRulesRuleIDSecurity) (*operations.PutAPIRulesRuleIDResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url, err := utils.GenerateURL(ctx, baseURL, "/api/rules/{ruleId}", request, nil)
