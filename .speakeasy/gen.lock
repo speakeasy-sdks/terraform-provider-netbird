@@ -4,15 +4,15 @@ management:
   docChecksum: efc15a2cebb7508c2a3d9c4322a8dc7c
   docVersion: 0.0.1
   speakeasyVersion: internal
-  generationVersion: 2.230.3
-  releaseVersion: 2.5.0
-  configChecksum: 9c53ff3b020cf980fd9274866f3dadac
+  generationVersion: 2.233.2
+  releaseVersion: 2.5.1
+  configChecksum: 258872953944ca45b878a50ab4d3cd0f
   repoURL: https://github.com/speakeasy-sdks/terraform-provider-netbird.git
   repoSubDirectory: .
   published: true
 features:
   terraform:
-    core: 3.8.1
+    core: 3.8.2
     deprecations: 2.81.1
     globalSecurity: 2.81.2
     globalServerURLs: 2.82.1
