@@ -6,7 +6,7 @@ generation:
   fixes:
     nameResolutionDec2023: false
 terraform:
-  version: 2.5.2
+  version: 2.5.3
   author: NetBird
   imports:
     option: openapi
