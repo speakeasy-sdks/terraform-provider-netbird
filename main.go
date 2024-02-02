@@ -7,7 +7,7 @@ import (
 	"flag"
 	"log"
 
-	"github.com/NetBird/terraform-provider-netbird/v2/internal/provider"
+	"github.com/NetBird/terraform-provider-netbird/v3/internal/provider"
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 )
 
