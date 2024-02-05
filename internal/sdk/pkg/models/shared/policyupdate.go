@@ -11,8 +11,6 @@ type PolicyUpdate struct {
 	ID *string `json:"id,omitempty"`
 	// Policy name identifier
 	Name string `json:"name"`
-	// Policy Rego query
-	Query string `json:"query"`
 	// Policy rule object for policy UI editor
 	Rules []PolicyRuleUpdate `json:"rules"`
 }
@@ -43,13 +41,6 @@ func (o *PolicyUpdate) GetName() string {
 		return ""
 	}
 	return o.Name
-}
-
-func (o *PolicyUpdate) GetQuery() string {
-	if o == nil {
-		return ""
-	}
-	return o.Query
 }
 
 func (o *PolicyUpdate) GetRules() []PolicyRuleUpdate {

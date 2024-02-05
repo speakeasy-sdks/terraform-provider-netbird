@@ -7,7 +7,7 @@ generation:
     nameResolutionDec2023: false
     parameterOrderingFeb2024: false
 terraform:
-  version: 3.0.0
+  version: 3.0.1
   author: NetBird
   imports:
     option: openapi
