@@ -3,7 +3,7 @@
 package shared
 
 import (
-	"github.com/NetBird/terraform-provider-netbird/v3/internal/sdk/pkg/utils"
+	"github.com/NetBird/terraform-provider-netbird/v4/internal/sdk/pkg/utils"
 	"time"
 )
 

@@ -12,7 +12,7 @@ import (
 
 	"github.com/ericlagergren/decimal"
 
-	"github.com/NetBird/terraform-provider-netbird/v3/internal/sdk/pkg/types"
+	"github.com/NetBird/terraform-provider-netbird/v4/internal/sdk/pkg/types"
 )
 
 func populateForm(paramName string, explode bool, objType reflect.Type, objValue reflect.Value, delimiter string, getFieldName func(reflect.StructField) string) url.Values {

@@ -6,7 +6,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	tfReflect "github.com/NetBird/terraform-provider-netbird/v3/internal/provider/reflect"
+	tfReflect "github.com/NetBird/terraform-provider-netbird/v4/internal/provider/reflect"
 	"github.com/hashicorp/terraform-plugin-framework/diag"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"

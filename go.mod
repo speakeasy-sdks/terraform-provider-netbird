@@ -1,4 +1,4 @@
-module github.com/NetBird/terraform-provider-netbird/v3
+module github.com/NetBird/terraform-provider-netbird/v4
 
 go 1.20
 

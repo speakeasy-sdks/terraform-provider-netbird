@@ -5,8 +5,8 @@ package sdk
 import (
 	"context"
 	"fmt"
-	"github.com/NetBird/terraform-provider-netbird/v3/internal/sdk/pkg/models/shared"
-	"github.com/NetBird/terraform-provider-netbird/v3/internal/sdk/pkg/utils"
+	"github.com/NetBird/terraform-provider-netbird/v4/internal/sdk/pkg/models/shared"
+	"github.com/NetBird/terraform-provider-netbird/v4/internal/sdk/pkg/utils"
 	"net/http"
 	"time"
 )
@@ -162,9 +162,9 @@ func New(opts ...SDKOption) *Netbird {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "3.0.1",
-			GenVersion:        "2.250.2",
-			UserAgent:         "speakeasy-sdk/go 3.0.1 2.250.2 0.0.1 netbird",
+			SDKVersion:        "4.0.0",
+			GenVersion:        "2.250.12",
+			UserAgent:         "speakeasy-sdk/go 4.0.0 2.250.12 0.0.1 netbird",
 		},
 	}
 	for _, opt := range opts {

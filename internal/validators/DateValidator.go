@@ -4,7 +4,7 @@ package validators
 
 import (
 	"context"
-	"github.com/NetBird/terraform-provider-netbird/v3/internal/sdk/pkg/types"
+	"github.com/NetBird/terraform-provider-netbird/v4/internal/sdk/pkg/types"
 	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 )
