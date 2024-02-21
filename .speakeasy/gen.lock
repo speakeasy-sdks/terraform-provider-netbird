@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 22a85f5d-a12a-469b-b7e4-183a831f6085
 management:
-  docChecksum: 48f464424071fa363e2d3f3e6cd63fa8
+  docChecksum: 4e0a4d7b2bc6bc96bf199cc0399be4af
   docVersion: 0.0.1
   speakeasyVersion: internal
   generationVersion: 2.263.3
-  releaseVersion: 4.0.1
-  configChecksum: 99687492c47d24f7f084579fec82ad08
+  releaseVersion: 4.0.2
+  configChecksum: 1d213ecd4c3af1891c8017ab91f47c7e
   repoURL: https://github.com/speakeasy-sdks/terraform-provider-netbird.git
   repoSubDirectory: .
   published: true

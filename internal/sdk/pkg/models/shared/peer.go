@@ -13,17 +13,17 @@ type Peer struct {
 	// (Cloud only) Indicates whether peer needs approval
 	ApprovalRequired *bool `json:"approval_required,omitempty"`
 	// Commonly used English name of the city
-	CityName *string `json:"city_name,omitempty"`
+	CityName string `json:"city_name"`
 	// Peer to Management connection status
 	Connected bool `json:"connected"`
 	// Peer's public connection IP address
-	ConnectionIP *string `json:"connection_ip,omitempty"`
+	ConnectionIP string `json:"connection_ip"`
 	// 2-letter ISO 3166-1 alpha-2 code that represents the country
-	CountryCode *string `json:"country_code,omitempty"`
+	CountryCode string `json:"country_code"`
 	// Peer's DNS label is the parsed peer name for domain resolution. It is used to form an FQDN by appending the account's domain to the peer label. e.g. peer-dns-label.netbird.cloud
 	DNSLabel string `json:"dns_label"`
 	// Unique identifier from the GeoNames database for a specific geographical location.
-	GeonameID *int64 `json:"geoname_id,omitempty"`
+	GeonameID int64 `json:"geoname_id"`
 	// Groups that the peer belongs to
 	Groups []GroupMinimum `json:"groups"`
 	// Hostname of the machine
@@ -33,7 +33,7 @@ type Peer struct {
 	// Peer's IP address
 	IP string `json:"ip"`
 	// Peer's operating system kernel version
-	KernelVersion *string `json:"kernel_version,omitempty"`
+	KernelVersion string `json:"kernel_version"`
 	// Last time this peer performed log in (authentication). E.g., user authenticated.
 	LastLogin time.Time `json:"last_login"`
 	// Last time peer connected to Netbird's management service
@@ -49,9 +49,9 @@ type Peer struct {
 	// Indicates whether SSH server is enabled on this peer
 	SSHEnabled bool `json:"ssh_enabled"`
 	// Peer's desktop UI version
-	UIVersion *string `json:"ui_version,omitempty"`
+	UIVersion string `json:"ui_version"`
 	// User ID of the user that enrolled this peer
-	UserID *string `json:"user_id,omitempty"`
+	UserID string `json:"user_id"`
 	// Peer's daemon or cli version
 	Version string `json:"version"`
 }
@@ -81,9 +81,9 @@ func (o *Peer) GetApprovalRequired() *bool {
 	return o.ApprovalRequired
 }
 
-func (o *Peer) GetCityName() *string {
+func (o *Peer) GetCityName() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.CityName
 }
@@ -95,16 +95,16 @@ func (o *Peer) GetConnected() bool {
 	return o.Connected
 }
 
-func (o *Peer) GetConnectionIP() *string {
+func (o *Peer) GetConnectionIP() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.ConnectionIP
 }
 
-func (o *Peer) GetCountryCode() *string {
+func (o *Peer) GetCountryCode() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.CountryCode
 }
@@ -116,9 +116,9 @@ func (o *Peer) GetDNSLabel() string {
 	return o.DNSLabel
 }
 
-func (o *Peer) GetGeonameID() *int64 {
+func (o *Peer) GetGeonameID() int64 {
 	if o == nil {
-		return nil
+		return 0
 	}
 	return o.GeonameID
 }
@@ -151,9 +151,9 @@ func (o *Peer) GetIP() string {
 	return o.IP
 }
 
-func (o *Peer) GetKernelVersion() *string {
+func (o *Peer) GetKernelVersion() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.KernelVersion
 }
@@ -207,16 +207,16 @@ func (o *Peer) GetSSHEnabled() bool {
 	return o.SSHEnabled
 }
 
-func (o *Peer) GetUIVersion() *string {
+func (o *Peer) GetUIVersion() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.UIVersion
 }
 
-func (o *Peer) GetUserID() *string {
+func (o *Peer) GetUserID() string {
 	if o == nil {
-		return nil
+		return ""
 	}
 	return o.UserID
 }
