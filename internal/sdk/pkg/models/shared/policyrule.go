@@ -7,19 +7,19 @@ import (
 	"fmt"
 )
 
-// Action - Policy rule accept or drops packets
-type Action string
+// PolicyRuleAction - Policy rule accept or drops packets
+type PolicyRuleAction string
 
 const (
-	ActionAccept Action = "accept"
-	ActionDrop   Action = "drop"
+	PolicyRuleActionAccept PolicyRuleAction = "accept"
+	PolicyRuleActionDrop   PolicyRuleAction = "drop"
 )
 
-func (e Action) ToPointer() *Action {
+func (e PolicyRuleAction) ToPointer() *PolicyRuleAction {
 	return &e
 }
 
-func (e *Action) UnmarshalJSON(data []byte) error {
+func (e *PolicyRuleAction) UnmarshalJSON(data []byte) error {
 	var v string
 	if err := json.Unmarshal(data, &v); err != nil {
 		return err
@@ -28,10 +28,10 @@ func (e *Action) UnmarshalJSON(data []byte) error {
 	case "accept":
 		fallthrough
 	case "drop":
-		*e = Action(v)
+		*e = PolicyRuleAction(v)
 		return nil
 	default:
-		return fmt.Errorf("invalid value for Action: %v", v)
+		return fmt.Errorf("invalid value for PolicyRuleAction: %v", v)
 	}
 }
 
@@ -71,7 +71,7 @@ func (e *Protocol) UnmarshalJSON(data []byte) error {
 
 type PolicyRule struct {
 	// Policy rule accept or drops packets
-	Action Action `json:"action"`
+	Action PolicyRuleAction `json:"action"`
 	// Define if the rule is applicable in both directions, sources, and destinations.
 	Bidirectional bool `json:"bidirectional"`
 	// Policy rule friendly description
@@ -92,9 +92,9 @@ type PolicyRule struct {
 	Sources []GroupMinimum `json:"sources"`
 }
 
-func (o *PolicyRule) GetAction() Action {
+func (o *PolicyRule) GetAction() PolicyRuleAction {
 	if o == nil {
-		return Action("")
+		return PolicyRuleAction("")
 	}
 	return o.Action
 }

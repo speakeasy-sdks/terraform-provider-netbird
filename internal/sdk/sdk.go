@@ -71,11 +71,14 @@ type Netbird struct {
 	// View information about the account and network events.
 	Events *Events
 	// Interact with and view information about groups.
-	Groups *Groups
+	Groups       *Groups
+	GeoLocations *GeoLocations
 	// Interact with and view information about peers.
 	Peers *Peers
 	// Interact with and view information about policies.
 	Policies *Policies
+	// Interact with and view information about posture checks.
+	PostureChecks *PostureChecks
 	// Interact with and view information about routes.
 	Routes *Routes
 	// Interact with and view information about rules.
@@ -162,9 +165,9 @@ func New(opts ...SDKOption) *Netbird {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "4.0.0",
-			GenVersion:        "2.250.12",
-			UserAgent:         "speakeasy-sdk/go 4.0.0 2.250.12 0.0.1 netbird",
+			SDKVersion:        "4.0.1",
+			GenVersion:        "2.263.3",
+			UserAgent:         "speakeasy-sdk/go 4.0.1 2.263.3 0.0.1 netbird",
 		},
 	}
 	for _, opt := range opts {
@@ -191,9 +194,13 @@ func New(opts ...SDKOption) *Netbird {
 
 	sdk.Groups = newGroups(sdk.sdkConfiguration)
 
+	sdk.GeoLocations = newGeoLocations(sdk.sdkConfiguration)
+
 	sdk.Peers = newPeers(sdk.sdkConfiguration)
 
 	sdk.Policies = newPolicies(sdk.sdkConfiguration)
+
+	sdk.PostureChecks = newPostureChecks(sdk.sdkConfiguration)
 
 	sdk.Routes = newRoutes(sdk.sdkConfiguration)
 

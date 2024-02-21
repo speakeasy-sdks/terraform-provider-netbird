@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 22a85f5d-a12a-469b-b7e4-183a831f6085
 management:
-  docChecksum: 65833c6325c0978d6edf42fd3d92736f
+  docChecksum: 48f464424071fa363e2d3f3e6cd63fa8
   docVersion: 0.0.1
   speakeasyVersion: internal
-  generationVersion: 2.250.12
-  releaseVersion: 4.0.0
-  configChecksum: a5651b5d0d83bdeaf56aca65ad9984d9
+  generationVersion: 2.263.3
+  releaseVersion: 4.0.1
+  configChecksum: 99687492c47d24f7f084579fec82ad08
   repoURL: https://github.com/speakeasy-sdks/terraform-provider-netbird.git
   repoSubDirectory: .
   published: true
 features:
   terraform:
-    core: 3.9.4
+    core: 3.9.5
     deprecations: 2.81.1
     globalSecurity: 2.81.3
     globalServerURLs: 2.82.1
@@ -22,8 +22,10 @@ generatedFiles:
   - internal/sdk/dns.go
   - internal/sdk/events.go
   - internal/sdk/groups.go
+  - internal/sdk/geolocations.go
   - internal/sdk/peers.go
   - internal/sdk/policies.go
+  - internal/sdk/posturechecks.go
   - internal/sdk/routes.go
   - internal/sdk/rules.go
   - internal/sdk/setupkeys.go
@@ -106,6 +108,8 @@ generatedFiles:
   - internal/sdk/pkg/models/operations/getapigroupsgroupid.go
   - internal/sdk/pkg/models/operations/postapigroups.go
   - internal/sdk/pkg/models/operations/putapigroupsgroupid.go
+  - internal/sdk/pkg/models/operations/getapilocationscountries.go
+  - internal/sdk/pkg/models/operations/getapilocationscountriescountrycities.go
   - internal/sdk/pkg/models/operations/deleteapipeerspeerid.go
   - internal/sdk/pkg/models/operations/getapipeers.go
   - internal/sdk/pkg/models/operations/getapipeerspeerid.go
@@ -115,6 +119,11 @@ generatedFiles:
   - internal/sdk/pkg/models/operations/getapipoliciespolicyid.go
   - internal/sdk/pkg/models/operations/postapipolicies.go
   - internal/sdk/pkg/models/operations/putapipoliciespolicyid.go
+  - internal/sdk/pkg/models/operations/deleteapiposturechecksposturecheckid.go
+  - internal/sdk/pkg/models/operations/getapiposturechecks.go
+  - internal/sdk/pkg/models/operations/getapiposturechecksposturecheckid.go
+  - internal/sdk/pkg/models/operations/postapiposturechecks.go
+  - internal/sdk/pkg/models/operations/putapiposturechecksposturecheckid.go
   - internal/sdk/pkg/models/operations/deleteapiroutesrouteid.go
   - internal/sdk/pkg/models/operations/getapiroutes.go
   - internal/sdk/pkg/models/operations/getapiroutesrouteid.go
@@ -150,6 +159,8 @@ generatedFiles:
   - internal/sdk/pkg/models/shared/group.go
   - internal/sdk/pkg/models/shared/peerminimum.go
   - internal/sdk/pkg/models/shared/grouprequest.go
+  - internal/sdk/pkg/models/shared/city.go
+  - internal/sdk/pkg/models/shared/country.go
   - internal/sdk/pkg/models/shared/peerbatch.go
   - internal/sdk/pkg/models/shared/groupminimum.go
   - internal/sdk/pkg/models/shared/peer.go
@@ -159,6 +170,15 @@ generatedFiles:
   - internal/sdk/pkg/models/shared/policyrule.go
   - internal/sdk/pkg/models/shared/policyupdate.go
   - internal/sdk/pkg/models/shared/policyruleupdate.go
+  - internal/sdk/pkg/models/shared/posturecheck.go
+  - internal/sdk/pkg/models/shared/checks.go
+  - internal/sdk/pkg/models/shared/osversioncheck.go
+  - internal/sdk/pkg/models/shared/minkernelversioncheck.go
+  - internal/sdk/pkg/models/shared/minversioncheck.go
+  - internal/sdk/pkg/models/shared/nbversioncheck.go
+  - internal/sdk/pkg/models/shared/geolocationcheck.go
+  - internal/sdk/pkg/models/shared/location.go
+  - internal/sdk/pkg/models/shared/posturecheckupdate.go
   - internal/sdk/pkg/models/shared/route.go
   - internal/sdk/pkg/models/shared/routerequest.go
   - internal/sdk/pkg/models/shared/rule.go

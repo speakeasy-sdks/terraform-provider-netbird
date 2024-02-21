@@ -12,10 +12,18 @@ type Peer struct {
 	AccessiblePeers []AccessiblePeer `json:"accessible_peers"`
 	// (Cloud only) Indicates whether peer needs approval
 	ApprovalRequired *bool `json:"approval_required,omitempty"`
+	// Commonly used English name of the city
+	CityName *string `json:"city_name,omitempty"`
 	// Peer to Management connection status
 	Connected bool `json:"connected"`
+	// Peer's public connection IP address
+	ConnectionIP *string `json:"connection_ip,omitempty"`
+	// 2-letter ISO 3166-1 alpha-2 code that represents the country
+	CountryCode *string `json:"country_code,omitempty"`
 	// Peer's DNS label is the parsed peer name for domain resolution. It is used to form an FQDN by appending the account's domain to the peer label. e.g. peer-dns-label.netbird.cloud
 	DNSLabel string `json:"dns_label"`
+	// Unique identifier from the GeoNames database for a specific geographical location.
+	GeonameID *int64 `json:"geoname_id,omitempty"`
 	// Groups that the peer belongs to
 	Groups []GroupMinimum `json:"groups"`
 	// Hostname of the machine
@@ -24,6 +32,8 @@ type Peer struct {
 	ID string `json:"id"`
 	// Peer's IP address
 	IP string `json:"ip"`
+	// Peer's operating system kernel version
+	KernelVersion *string `json:"kernel_version,omitempty"`
 	// Last time this peer performed log in (authentication). E.g., user authenticated.
 	LastLogin time.Time `json:"last_login"`
 	// Last time peer connected to Netbird's management service
@@ -71,6 +81,13 @@ func (o *Peer) GetApprovalRequired() *bool {
 	return o.ApprovalRequired
 }
 
+func (o *Peer) GetCityName() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CityName
+}
+
 func (o *Peer) GetConnected() bool {
 	if o == nil {
 		return false
@@ -78,11 +95,32 @@ func (o *Peer) GetConnected() bool {
 	return o.Connected
 }
 
+func (o *Peer) GetConnectionIP() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ConnectionIP
+}
+
+func (o *Peer) GetCountryCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.CountryCode
+}
+
 func (o *Peer) GetDNSLabel() string {
 	if o == nil {
 		return ""
 	}
 	return o.DNSLabel
+}
+
+func (o *Peer) GetGeonameID() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.GeonameID
 }
 
 func (o *Peer) GetGroups() []GroupMinimum {
@@ -111,6 +149,13 @@ func (o *Peer) GetIP() string {
 		return ""
 	}
 	return o.IP
+}
+
+func (o *Peer) GetKernelVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.KernelVersion
 }
 
 func (o *Peer) GetLastLogin() time.Time {

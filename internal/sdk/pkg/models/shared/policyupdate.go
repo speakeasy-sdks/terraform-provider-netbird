@@ -13,6 +13,8 @@ type PolicyUpdate struct {
 	Name string `json:"name"`
 	// Policy rule object for policy UI editor
 	Rules []PolicyRuleUpdate `json:"rules"`
+	// Posture checks ID's applied to policy source groups
+	SourcePostureChecks []string `json:"source_posture_checks,omitempty"`
 }
 
 func (o *PolicyUpdate) GetDescription() string {
@@ -48,4 +50,11 @@ func (o *PolicyUpdate) GetRules() []PolicyRuleUpdate {
 		return []PolicyRuleUpdate{}
 	}
 	return o.Rules
+}
+
+func (o *PolicyUpdate) GetSourcePostureChecks() []string {
+	if o == nil {
+		return nil
+	}
+	return o.SourcePostureChecks
 }
