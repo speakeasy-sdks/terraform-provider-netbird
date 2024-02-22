@@ -8,7 +8,7 @@ generation:
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
 terraform:
-  version: 4.0.2
+  version: 4.0.3
   author: NetBird
   imports:
     option: openapi

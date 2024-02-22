@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 22a85f5d-a12a-469b-b7e4-183a831f6085
 management:
-  docChecksum: 4e0a4d7b2bc6bc96bf199cc0399be4af
+  docChecksum: 40d60239760029d924831e9947805122
   docVersion: 0.0.1
   speakeasyVersion: internal
-  generationVersion: 2.263.3
-  releaseVersion: 4.0.2
-  configChecksum: 1d213ecd4c3af1891c8017ab91f47c7e
+  generationVersion: 2.268.0
+  releaseVersion: 4.0.3
+  configChecksum: fa85b600f7881804e5415a908718a106
   repoURL: https://github.com/speakeasy-sdks/terraform-provider-netbird.git
   repoSubDirectory: .
   published: true
@@ -172,6 +172,7 @@ generatedFiles:
   - internal/sdk/pkg/models/shared/policyruleupdate.go
   - internal/sdk/pkg/models/shared/posturecheck.go
   - internal/sdk/pkg/models/shared/checks.go
+  - internal/sdk/pkg/models/shared/privatenetworkcheck.go
   - internal/sdk/pkg/models/shared/osversioncheck.go
   - internal/sdk/pkg/models/shared/minkernelversioncheck.go
   - internal/sdk/pkg/models/shared/minversioncheck.go

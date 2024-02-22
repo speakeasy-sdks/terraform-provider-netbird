@@ -10,6 +10,8 @@ type Checks struct {
 	NbVersionCheck *NBVersionCheck `json:"nb_version_check,omitempty"`
 	// Posture check for the version of operating system
 	OsVersionCheck *OSVersionCheck `json:"os_version_check,omitempty"`
+	// Posture check for allow or deny private network
+	PrivateNetworkCheck *PrivateNetworkCheck `json:"private_network_check,omitempty"`
 }
 
 func (o *Checks) GetGeoLocationCheck() *GeoLocationCheck {
@@ -31,4 +33,11 @@ func (o *Checks) GetOsVersionCheck() *OSVersionCheck {
 		return nil
 	}
 	return o.OsVersionCheck
+}
+
+func (o *Checks) GetPrivateNetworkCheck() *PrivateNetworkCheck {
+	if o == nil {
+		return nil
+	}
+	return o.PrivateNetworkCheck
 }
