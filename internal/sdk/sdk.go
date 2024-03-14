@@ -81,8 +81,6 @@ type Netbird struct {
 	PostureChecks *PostureChecks
 	// Interact with and view information about routes.
 	Routes *Routes
-	// Interact with and view information about rules.
-	Rules *Rules
 	// Interact with and view information about setup keys.
 	SetupKeys *SetupKeys
 	// Interact with and view information about users.
@@ -165,9 +163,9 @@ func New(opts ...SDKOption) *Netbird {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.1",
-			SDKVersion:        "4.1.1",
-			GenVersion:        "2.280.6",
-			UserAgent:         "speakeasy-sdk/go 4.1.1 2.280.6 0.0.1 netbird",
+			SDKVersion:        "4.2.0",
+			GenVersion:        "2.281.2",
+			UserAgent:         "speakeasy-sdk/go 4.2.0 2.281.2 0.0.1 netbird",
 		},
 	}
 	for _, opt := range opts {
@@ -203,8 +201,6 @@ func New(opts ...SDKOption) *Netbird {
 	sdk.PostureChecks = newPostureChecks(sdk.sdkConfiguration)
 
 	sdk.Routes = newRoutes(sdk.sdkConfiguration)
-
-	sdk.Rules = newRules(sdk.sdkConfiguration)
 
 	sdk.SetupKeys = newSetupKeys(sdk.sdkConfiguration)
 

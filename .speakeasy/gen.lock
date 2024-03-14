@@ -1,19 +1,18 @@
 lockVersion: 2.0.0
 id: 22a85f5d-a12a-469b-b7e4-183a831f6085
 management:
-  docChecksum: c2ac9d61010b686a45f387ba9f7f4a68
+  docChecksum: e0e027affa676840ec4a0cf20e708197
   docVersion: 0.0.1
-  speakeasyVersion: 1.207.1
-  generationVersion: 2.280.6
-  releaseVersion: 4.1.1
-  configChecksum: 4951a551131d13f00293d550d1510033
+  speakeasyVersion: 1.209.2
+  generationVersion: 2.281.2
+  releaseVersion: 4.2.0
+  configChecksum: 530728a055c32a626a5a77446b469d49
   repoURL: https://github.com/speakeasy-sdks/terraform-provider-netbird.git
   repoSubDirectory: .
   published: true
 features:
   terraform:
     core: 3.10.3
-    deprecations: 2.81.1
     globalSecurity: 2.81.5
     globalServerURLs: 2.82.1
     methodSecurity: 2.82.1
@@ -27,7 +26,6 @@ generatedFiles:
   - internal/sdk/policies.go
   - internal/sdk/posturechecks.go
   - internal/sdk/routes.go
-  - internal/sdk/rules.go
   - internal/sdk/setupkeys.go
   - internal/sdk/users.go
   - internal/sdk/tokens.go
@@ -129,11 +127,6 @@ generatedFiles:
   - internal/sdk/pkg/models/operations/getapiroutesrouteid.go
   - internal/sdk/pkg/models/operations/postapiroutes.go
   - internal/sdk/pkg/models/operations/putapiroutesrouteid.go
-  - internal/sdk/pkg/models/operations/deleteapirulesruleid.go
-  - internal/sdk/pkg/models/operations/getapirules.go
-  - internal/sdk/pkg/models/operations/getapirulesruleid.go
-  - internal/sdk/pkg/models/operations/postapirules.go
-  - internal/sdk/pkg/models/operations/putapirulesruleid.go
   - internal/sdk/pkg/models/operations/getapisetupkeys.go
   - internal/sdk/pkg/models/operations/getapisetupkeyskeyid.go
   - internal/sdk/pkg/models/operations/postapisetupkeys.go
@@ -182,8 +175,6 @@ generatedFiles:
   - internal/sdk/pkg/models/shared/posturecheckupdate.go
   - internal/sdk/pkg/models/shared/route.go
   - internal/sdk/pkg/models/shared/routerequest.go
-  - internal/sdk/pkg/models/shared/rule.go
-  - internal/sdk/pkg/models/shared/rulerequest.go
   - internal/sdk/pkg/models/shared/setupkey.go
   - internal/sdk/pkg/models/shared/setupkeyrequest.go
   - internal/sdk/pkg/models/shared/user.go
